@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { memo } from "react";
+import Canvas from "./components/canvas/Canvas";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export interface StateSizeCanvasType {
+  width: number;
+  height: number;
 }
 
-export default App;
+const App: React.FC = () => {
+  const [get, set] = React.useState<StateSizeCanvasType>({
+    width: 0,
+    height: 0,
+  });
+
+  React.useEffect(() => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    set({ width: width, height: height });
+  }, []);
+
+  return <Canvas get={get} />;
+};
+
+export default memo(App);
