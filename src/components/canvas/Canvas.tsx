@@ -1,5 +1,8 @@
 import React from "react";
 import { StateSizeCanvasType } from "../../App";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../redux/store";
+import { setKoordActionX, setKoordActionY } from "../../redux/koordReducer";
 import styled from "styled-components";
 import img from "../../img/pixel-art-santa-claus-with-a-bag-of-gifts-isolated-on-white-background-8-bit-christmas-character-winter-holiday-clipart-old-school-vintage-retro-80s-90s-slot-machinevideo-game-graphics-700-224060105.png";
 import img2 from "../../img/2.png";
@@ -16,18 +19,19 @@ const enum KeyType {
   ArrowDown = "ArrowDown",
 }
 
-const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
-  const { height, width } = get;
-  const [key, setKey] = React.useState<string>();
-  const [koordX, setCoordX] = React.useState<number>(0);
-  const [koordY, setCoordY] = React.useState<number>(0);
-  const [revers, setRevers] = React.useState<boolean>(false);
+const heroProp = { size: 50, step: 5 };
 
-  const heroProp = { size: width / 33, step: Math.floor(width / 120) };
+const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
+  const [revers, setRevers] = React.useState<boolean>(false);
+  const store = useSelector((state: RootState) => state.koord);
+  const dispatch: AppDispatch = useDispatch();
+  const [key, setKey] = React.useState<string>();
+
+  const { height, width } = get;
 
   const heroRect = {
-    x: koordX,
-    y: koordY,
+    x: store.x,
+    y: store.y,
     width: heroProp.size,
     height: heroProp.size,
   };
@@ -61,73 +65,73 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
     ];
   }, [height, width]);
 
-  const switchKeys = React.useCallback(
+  const switchKays = React.useCallback(
     (key: string) => {
       switch (key) {
         case KeyType.ArrowRight:
-          setKey(KeyType.ArrowRight);
           setRevers(false);
-          setCoordX((coord) => coord + heroProp.step);
+          setKey(KeyType.ArrowRight);
+          dispatch(setKoordActionX(10));
           break;
         case KeyType.ArrowLeft:
-          setKey(KeyType.ArrowLeft);
           setRevers(true);
-          setCoordX((coord) => coord - heroProp.step);
+          setKey(KeyType.ArrowLeft);
+          dispatch(setKoordActionX(-10));
           break;
         case KeyType.ArrowUp:
           setKey(KeyType.ArrowUp);
-          setCoordY((coord) => coord - heroProp.step);
+          dispatch(setKoordActionY(-10));
           break;
         case KeyType.ArrowDown:
           setKey(KeyType.ArrowDown);
-          setCoordY((coord) => coord + heroProp.step);
+          dispatch(setKoordActionY(10));
           break;
         default:
           break;
       }
     },
-    [heroProp.step]
+    [dispatch]
   );
 
   React.useEffect(() => {
     const keyDownHandler = (event: KeyboardEvent) => {
       const key = event.key;
-      return switchKeys(key);
+      return switchKays(key);
     };
     window.addEventListener("keydown", keyDownHandler);
     return window.removeEventListener("keyup", keyDownHandler);
-  }, [switchKeys]);
+  }, [switchKays]);
 
   React.useEffect(() => {
-    if (koordX < 0) setCoordX(0);
-    if (koordY < 0) setCoordY(0);
-    if (koordX > width - heroProp.size) setCoordX(width - heroProp.size);
-    if (koordY > height - heroProp.size) setCoordY(height - heroProp.size);
-
+    if (store.x < 0) dispatch(setKoordActionX(10));
+    if (store.x > width - 50) dispatch(setKoordActionX(-10));
+    if (store.y > height - 50) dispatch(setKoordActionY(-10));
+    if (store.y < 0) dispatch(setKoordActionY(10));
     const colisObj = (
       hero: number,
       x: number,
       y: number,
       height: number,
-      width: number
+      width: number,
+      fill: string
     ) => {
       if (
-        koordX < x + width &&
-        koordX + hero > x &&
-        koordY < y + height &&
-        koordY + hero > y
+        store.x < x + width &&
+        store.x + hero > x &&
+        store.y < y + height &&
+        store.y + hero > y
       ) {
-        if (key === KeyType.ArrowRight) setCoordX(x - hero);
-        if (key === KeyType.ArrowLeft) setCoordX(x + width);
-        if (key === KeyType.ArrowDown) setCoordY(y - hero);
-        if (key === KeyType.ArrowUp) setCoordY(height + y);
+        if (key === KeyType.ArrowRight) dispatch(setKoordActionX(-10));
+        if (key === KeyType.ArrowLeft) dispatch(setKoordActionX(10));
+        if (key === KeyType.ArrowDown) dispatch(setKoordActionY(-10));
+        if (key === KeyType.ArrowUp) dispatch(setKoordActionY(10));
       }
     };
 
-    labyrinthProp.forEach(({ x, y, height, width }) => {
-      return colisObj(heroProp.size, x, y, height, width);
+    labyrinthProp.forEach(({ x, y, height, width, fill }) => {
+      return colisObj(heroProp.size, x, y, height, width, fill);
     });
-  }, [koordX, height, width, koordY, key, labyrinthProp, heroProp.size]);
+  }, [dispatch, height, key, labyrinthProp, store.x, store.y, width]);
 
   return (
     <SVG
