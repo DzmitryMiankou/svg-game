@@ -1,5 +1,5 @@
-const SETKOORDX = "SET_KOORD_sdfbsfdsDDf!fgngfnm42FDB_drbgtr$$_RF_1831";
-const SETKOORDY = "SET_KOORD_STOP_sdfbsfdsDDf!fgngfnm42FDB_drbgtr$$_RF_1831";
+const SETKOORDX = "SET_KOORDX_sdfbsfdsDDf!fgngfnm42FDB_drbgtr$$_RF_1831";
+const SETKOORDY = "SET_KOORDY_sdfbsfdssws1221sDDf!fQQgngfnm42FDB_$_RF_1833";
 
 interface InitialStateType {
   x: number;

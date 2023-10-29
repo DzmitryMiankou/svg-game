@@ -19,8 +19,6 @@ const enum KeyType {
   ArrowDown = "ArrowDown",
 }
 
-const heroProp = { size: 50, step: 5 };
-
 const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   const [revers, setRevers] = React.useState<boolean>(false);
   const store = useSelector((state: RootState) => state.koord);
@@ -28,6 +26,8 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   const [key, setKey] = React.useState<string>();
 
   const { height, width } = get;
+
+  const heroProp = { size: width / 30, step: 5 };
 
   const heroRect = {
     x: store.x,
@@ -41,7 +41,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
       {
         key: 1,
         x: width / 2,
-        y: height / 13,
+        y: width / 30,
         width: width / 35,
         height: height,
         fill: "#a6b522",
@@ -51,14 +51,14 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         x: width / 2.3,
         y: 0,
         width: width / 35,
-        height: height / 1.07,
+        height: height / 1.08,
         fill: "#a6b522",
       },
       {
         key: 3,
-        x: width / 8,
-        y: height / 13,
-        width: width / 3,
+        x: width / 25,
+        y: width / 30,
+        width: width / 2.5,
         height: width / 35,
         fill: "#a6b522",
       },
@@ -71,26 +71,26 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         case KeyType.ArrowRight:
           setRevers(false);
           setKey(KeyType.ArrowRight);
-          dispatch(setKoordActionX(10));
+          dispatch(setKoordActionX(heroProp.step));
           break;
         case KeyType.ArrowLeft:
           setRevers(true);
           setKey(KeyType.ArrowLeft);
-          dispatch(setKoordActionX(-10));
+          dispatch(setKoordActionX(-heroProp.step));
           break;
         case KeyType.ArrowUp:
           setKey(KeyType.ArrowUp);
-          dispatch(setKoordActionY(-10));
+          dispatch(setKoordActionY(-heroProp.step));
           break;
         case KeyType.ArrowDown:
           setKey(KeyType.ArrowDown);
-          dispatch(setKoordActionY(10));
+          dispatch(setKoordActionY(heroProp.step));
           break;
         default:
           break;
       }
     },
-    [dispatch]
+    [dispatch, heroProp.step]
   );
 
   React.useEffect(() => {
@@ -103,17 +103,18 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   }, [switchKays]);
 
   React.useEffect(() => {
-    if (store.x < 0) dispatch(setKoordActionX(10));
-    if (store.x > width - 50) dispatch(setKoordActionX(-10));
-    if (store.y > height - 50) dispatch(setKoordActionY(-10));
-    if (store.y < 0) dispatch(setKoordActionY(10));
+    if (store.x < 0) dispatch(setKoordActionX(heroProp.step));
+    if (store.x > width - heroProp.size)
+      dispatch(setKoordActionX(-heroProp.step));
+    if (store.y > height - heroProp.size)
+      dispatch(setKoordActionY(-heroProp.step));
+    if (store.y < 0) dispatch(setKoordActionY(heroProp.step));
     const colisObj = (
       hero: number,
       x: number,
       y: number,
       height: number,
-      width: number,
-      fill: string
+      width: number
     ) => {
       if (
         store.x < x + width &&
@@ -121,17 +122,29 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         store.y < y + height &&
         store.y + hero > y
       ) {
-        if (key === KeyType.ArrowRight) dispatch(setKoordActionX(-10));
-        if (key === KeyType.ArrowLeft) dispatch(setKoordActionX(10));
-        if (key === KeyType.ArrowDown) dispatch(setKoordActionY(-10));
-        if (key === KeyType.ArrowUp) dispatch(setKoordActionY(10));
+        if (key === KeyType.ArrowRight)
+          dispatch(setKoordActionX(-heroProp.step));
+        if (key === KeyType.ArrowLeft) dispatch(setKoordActionX(heroProp.step));
+        if (key === KeyType.ArrowDown)
+          dispatch(setKoordActionY(-heroProp.step));
+        if (key === KeyType.ArrowUp) dispatch(setKoordActionY(heroProp.step));
       }
     };
 
-    labyrinthProp.forEach(({ x, y, height, width, fill }) => {
-      return colisObj(heroProp.size, x, y, height, width, fill);
+    labyrinthProp.forEach(({ x, y, height, width }) => {
+      return colisObj(heroProp.size, x, y, height, width);
     });
-  }, [dispatch, height, key, labyrinthProp, store.x, store.y, width]);
+  }, [
+    dispatch,
+    height,
+    heroProp.size,
+    heroProp.step,
+    key,
+    labyrinthProp,
+    store.x,
+    store.y,
+    width,
+  ]);
 
   return (
     <SVG
