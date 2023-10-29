@@ -6,34 +6,45 @@ import { setKoordActionX, setKoordActionY } from "../../redux/koordReducer";
 import styled from "styled-components";
 import img from "../../img/pixel-art-santa-claus-with-a-bag-of-gifts-isolated-on-white-background-8-bit-christmas-character-winter-holiday-clipart-old-school-vintage-retro-80s-90s-slot-machinevideo-game-graphics-700-224060105.png";
 import img2 from "../../img/2.png";
+import audio from "../../audio/SpaceHarrierTheme.mp3";
 
-const SVG = styled.svg`
-  width: 100%;
-  background-color: #f2f8ab;
-`;
+const enum ColourEnum {
+  WallColour = "#452715",
+  BGColour = "#ca965c",
+}
 
-const enum KeyType {
+const enum KeyEnum {
   ArrowRight = "ArrowRight",
   ArrowLeft = "ArrowLeft",
   ArrowUp = "ArrowUp",
   ArrowDown = "ArrowDown",
 }
 
+const SVG = styled.svg`
+  width: 100%;
+`;
+
 const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   const [revers, setRevers] = React.useState<boolean>(false);
   const store = useSelector((state: RootState) => state.koord);
   const dispatch: AppDispatch = useDispatch();
   const [key, setKey] = React.useState<string>();
+  const music = new Audio(audio);
+
+  const handlePlay = () => {
+    music.play();
+  };
 
   const { height, width } = get;
 
-  const heroProp = { size: width / 30, step: 5 };
+  const CharacterProp = { size: width / 30, step: 5 };
 
-  const heroRect = {
+  const CharacterRect = {
     x: store.x,
     y: store.y,
-    width: heroProp.size,
-    height: heroProp.size,
+    width: CharacterProp.size,
+    height: CharacterProp.size,
+    filter: "drop-shadow(3px 1px 2px rgb(0 0 0 / 0.4))",
   };
 
   const labyrinthProp = React.useMemo(() => {
@@ -44,7 +55,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         y: width / 30,
         width: width / 35,
         height: height,
-        fill: "#a6b522",
+        fill: ColourEnum.WallColour,
       },
       {
         key: 2,
@@ -52,15 +63,31 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         y: 0,
         width: width / 35,
         height: height / 1.08,
-        fill: "#a6b522",
+        fill: ColourEnum.WallColour,
       },
       {
         key: 3,
-        x: width / 25,
+        x: 0,
         y: width / 30,
-        width: width / 2.5,
+        width: width / 6,
         height: width / 35,
-        fill: "#a6b522",
+        fill: ColourEnum.WallColour,
+      },
+      {
+        key: 4,
+        x: width / 4.5,
+        y: width / 30,
+        width: width / 4.5,
+        height: width / 35,
+        fill: ColourEnum.WallColour,
+      },
+      {
+        key: 5,
+        x: 0,
+        y: width / 10.2,
+        width: width / 2.5,
+        height: width / 15,
+        fill: ColourEnum.WallColour,
       },
     ];
   }, [height, width]);
@@ -68,29 +95,29 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   const switchKays = React.useCallback(
     (key: string) => {
       switch (key) {
-        case KeyType.ArrowRight:
+        case KeyEnum.ArrowRight:
           setRevers(false);
-          setKey(KeyType.ArrowRight);
-          dispatch(setKoordActionX(heroProp.step));
+          setKey(KeyEnum.ArrowRight);
+          dispatch(setKoordActionX(CharacterProp.step));
           break;
-        case KeyType.ArrowLeft:
+        case KeyEnum.ArrowLeft:
           setRevers(true);
-          setKey(KeyType.ArrowLeft);
-          dispatch(setKoordActionX(-heroProp.step));
+          setKey(KeyEnum.ArrowLeft);
+          dispatch(setKoordActionX(-CharacterProp.step));
           break;
-        case KeyType.ArrowUp:
-          setKey(KeyType.ArrowUp);
-          dispatch(setKoordActionY(-heroProp.step));
+        case KeyEnum.ArrowUp:
+          setKey(KeyEnum.ArrowUp);
+          dispatch(setKoordActionY(-CharacterProp.step));
           break;
-        case KeyType.ArrowDown:
-          setKey(KeyType.ArrowDown);
-          dispatch(setKoordActionY(heroProp.step));
+        case KeyEnum.ArrowDown:
+          setKey(KeyEnum.ArrowDown);
+          dispatch(setKoordActionY(CharacterProp.step));
           break;
         default:
           break;
       }
     },
-    [dispatch, heroProp.step]
+    [dispatch, CharacterProp.step]
   );
 
   React.useEffect(() => {
@@ -98,17 +125,19 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
       const key = event.key;
       return switchKays(key);
     };
+
     window.addEventListener("keydown", keyDownHandler);
     return window.removeEventListener("keyup", keyDownHandler);
   }, [switchKays]);
 
   React.useEffect(() => {
-    if (store.x < 0) dispatch(setKoordActionX(heroProp.step));
-    if (store.x > width - heroProp.size)
-      dispatch(setKoordActionX(-heroProp.step));
-    if (store.y > height - heroProp.size)
-      dispatch(setKoordActionY(-heroProp.step));
-    if (store.y < 0) dispatch(setKoordActionY(heroProp.step));
+    if (store.x < 0) dispatch(setKoordActionX(CharacterProp.step));
+    if (store.x > width - CharacterProp.size)
+      dispatch(setKoordActionX(-CharacterProp.step));
+    if (store.y > height - CharacterProp.size)
+      dispatch(setKoordActionY(-CharacterProp.step));
+    if (store.y < 0) dispatch(setKoordActionY(CharacterProp.step));
+
     const colisObj = (
       hero: number,
       x: number,
@@ -122,23 +151,25 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         store.y < y + height &&
         store.y + hero > y
       ) {
-        if (key === KeyType.ArrowRight)
-          dispatch(setKoordActionX(-heroProp.step));
-        if (key === KeyType.ArrowLeft) dispatch(setKoordActionX(heroProp.step));
-        if (key === KeyType.ArrowDown)
-          dispatch(setKoordActionY(-heroProp.step));
-        if (key === KeyType.ArrowUp) dispatch(setKoordActionY(heroProp.step));
+        if (key === KeyEnum.ArrowRight)
+          dispatch(setKoordActionX(-CharacterProp.step));
+        if (key === KeyEnum.ArrowLeft)
+          dispatch(setKoordActionX(CharacterProp.step));
+        if (key === KeyEnum.ArrowDown)
+          dispatch(setKoordActionY(-CharacterProp.step));
+        if (key === KeyEnum.ArrowUp)
+          dispatch(setKoordActionY(CharacterProp.step));
       }
     };
 
     labyrinthProp.forEach(({ x, y, height, width }) => {
-      return colisObj(heroProp.size, x, y, height, width);
+      return colisObj(CharacterProp.size, x, y, height, width);
     });
   }, [
     dispatch,
     height,
-    heroProp.size,
-    heroProp.step,
+    CharacterProp.size,
+    CharacterProp.step,
     key,
     labyrinthProp,
     store.x,
@@ -147,26 +178,35 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   ]);
 
   return (
-    <SVG
-      x="0px"
-      y="0px"
-      viewBox={`0 0 ${width} ${height}`}
-      enableBackground={`new 0 0 ${width} ${height}`}
-    >
-      <rect x="0" y="0" fill="#ffd071" width={width} height={height} />
-      <g>
-        <image
-          overflow="visible"
-          {...heroRect}
-          xlinkHref={revers ? img2 : img}
-        ></image>
-      </g>
-      <g>
-        {labyrinthProp.map((prop) => (
-          <rect {...prop} />
-        ))}
-      </g>
-    </SVG>
+    <>
+      <SVG
+        x="0px"
+        y="0px"
+        viewBox={`0 0 ${width} ${height}`}
+        enableBackground={`new 0 0 ${width} ${height}`}
+      >
+        <rect
+          fill={ColourEnum.BGColour}
+          width={width}
+          height={height}
+          stroke={ColourEnum.WallColour}
+          strokeWidth="1%"
+        />
+        <g>
+          <image
+            overflow="visible"
+            onClick={handlePlay}
+            {...CharacterRect}
+            xlinkHref={revers ? img2 : img}
+          ></image>
+        </g>
+        <g>
+          {labyrinthProp.map((prop) => (
+            <rect {...prop} />
+          ))}
+        </g>
+      </SVG>
+    </>
   );
 };
 
