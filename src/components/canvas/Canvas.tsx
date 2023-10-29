@@ -32,6 +32,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   const music = new Audio(audio);
 
   const handlePlay = () => {
+    music.loop = true;
     music.play();
   };
 
