@@ -6,11 +6,13 @@ import { setKoordActionX, setKoordActionY } from "../../redux/koordReducer";
 import styled from "styled-components";
 import img from "../../img/pixel-art-santa-claus-with-a-bag-of-gifts-isolated-on-white-background-8-bit-christmas-character-winter-holiday-clipart-old-school-vintage-retro-80s-90s-slot-machinevideo-game-graphics-700-224060105.png";
 import img2 from "../../img/2.png";
+import NoactiveElemnt from "./ladder/NoactiveElemnt";
 import audio from "../../audio/SpaceHarrierTheme.mp3";
+import ActiveElement from "./active/ActiveElement";
 
 const enum ColourEnum {
-  WallColour = "#452715",
-  BGColour = "#ca965c",
+  WallColour = "#3c2415",
+  BGColour = "#e7af49",
 }
 
 const enum KeyEnum {
@@ -29,23 +31,25 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   const store = useSelector((state: RootState) => state.koord);
   const dispatch: AppDispatch = useDispatch();
   const [key, setKey] = React.useState<string>();
-  const music = new Audio(audio);
 
-  const handlePlay = () => {
+  const music = React.useMemo(() => {
+    return new Audio(audio);
+  }, []);
+
+  const handlePlay = React.useCallback(() => {
     music.loop = true;
     music.play();
-  };
+  }, [music]);
 
   const { height, width } = get;
 
-  const CharacterProp = { size: width / 30, step: 5 };
+  const CharacterProp = { size: width / 30, step: Math.floor(width / 300) };
 
   const CharacterRect = {
     x: store.x,
     y: store.y,
     width: CharacterProp.size,
     height: CharacterProp.size,
-    filter: "drop-shadow(3px 1px 2px rgb(0 0 0 / 0.4))",
   };
 
   const labyrinthProp = React.useMemo(() => {
@@ -76,9 +80,9 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
       },
       {
         key: 4,
-        x: width / 4.5,
+        x: width / 4.8,
         y: width / 30,
-        width: width / 4.5,
+        width: width / 4.2,
         height: width / 35,
         fill: ColourEnum.WallColour,
       },
@@ -86,8 +90,16 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         key: 5,
         x: 0,
         y: width / 10.2,
-        width: width / 2.5,
+        width: width / 2.6,
         height: width / 15,
+        fill: ColourEnum.WallColour,
+      },
+      {
+        key: 6,
+        x: width / 25,
+        y: width / 4.9,
+        width: width / 2.4,
+        height: width / 11,
         fill: ColourEnum.WallColour,
       },
     ];
@@ -193,6 +205,20 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
           stroke={ColourEnum.WallColour}
           strokeWidth="1%"
         />
+        <NoactiveElemnt width={width} height={height} />
+        <g>
+          {labyrinthProp.map((prop) => (
+            <rect {...prop} />
+          ))}
+        </g>
+        <ActiveElement
+          width={width}
+          height={height}
+          storeX={store.x}
+          storeY={store.y}
+          sizeCh={CharacterProp.size}
+        />
+
         <g>
           <image
             overflow="visible"
@@ -200,11 +226,6 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
             {...CharacterRect}
             xlinkHref={revers ? img2 : img}
           ></image>
-        </g>
-        <g>
-          {labyrinthProp.map((prop) => (
-            <rect {...prop} />
-          ))}
         </g>
       </SVG>
     </>
