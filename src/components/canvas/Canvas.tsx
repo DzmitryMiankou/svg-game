@@ -107,6 +107,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
 
   const switchKays = React.useCallback(
     (key: string) => {
+      setKey(key);
       switch (key) {
         case KeyEnum.ArrowRight:
           setRevers(false);
@@ -217,6 +218,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
           storeX={store.x}
           storeY={store.y}
           sizeCh={CharacterProp.size}
+          keyd={key}
         />
 
         <g>

@@ -8,6 +8,7 @@ interface PropType<T> {
   storeX: T;
   storeY: T;
   sizeCh: T;
+  keyd: string | undefined;
 }
 
 const ActiveElement: React.FC<PropType<number>> = ({
@@ -16,6 +17,7 @@ const ActiveElement: React.FC<PropType<number>> = ({
   storeX,
   storeY,
   sizeCh,
+  keyd,
 }) => {
   const [openDial, setOpenDial] = React.useState<string>("");
 
@@ -67,13 +69,14 @@ const ActiveElement: React.FC<PropType<number>> = ({
         storeY + hero > y
       ) {
         setOpenDial(text);
+        if (keyd === " ") return console.log("ok");
       }
     };
     setOpenDial("");
     CaseProp.forEach(({ x, y, height, width, text }) => {
       return colisObj(sizeCh, x, y, height, width, text);
     });
-  }, [CaseProp, height, sizeCh, storeX, storeY, width]);
+  }, [CaseProp, height, keyd, sizeCh, storeX, storeY, width]);
 
   return (
     <>
