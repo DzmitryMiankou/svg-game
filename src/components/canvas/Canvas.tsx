@@ -4,11 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../redux/store";
 import { setKoordActionX, setKoordActionY } from "../../redux/koordReducer";
 import styled from "styled-components";
-import img from "../../img/pixel-art-santa-claus-with-a-bag-of-gifts-isolated-on-white-background-8-bit-christmas-character-winter-holiday-clipart-old-school-vintage-retro-80s-90s-slot-machinevideo-game-graphics-700-224060105.png";
-import img2 from "../../img/2.png";
 import NoactiveElemnt from "./ladder/NoactiveElemnt";
-import audio from "../../audio/SpaceHarrierTheme.mp3";
 import ActiveElement from "./active/ActiveElement";
+import Bricks from "./bricks/Bricks";
 
 const enum ColourEnum {
   WallColour = "#3c2415",
@@ -32,25 +30,9 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   const dispatch: AppDispatch = useDispatch();
   const [key, setKey] = React.useState<string>();
 
-  const music = React.useMemo(() => {
-    return new Audio(audio);
-  }, []);
-
-  const handlePlay = React.useCallback(() => {
-    music.loop = true;
-    music.play();
-  }, [music]);
-
   const { height, width } = get;
 
   const CharacterProp = { size: width / 30, step: Math.floor(width / 300) };
-
-  const CharacterRect = {
-    x: store.x,
-    y: store.y,
-    width: CharacterProp.size,
-    height: CharacterProp.size,
-  };
 
   const labyrinthProp = React.useMemo(() => {
     return [
@@ -212,19 +194,16 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
             <rect {...prop} />
           ))}
         </g>
+        <Bricks width={width} />
         <ActiveElement
+          revers={revers}
           width={width}
           height={height}
           storeX={store.x}
           storeY={store.y}
           sizeCh={CharacterProp.size}
           keyd={key}
-        />
-        <image
-          overflow="visible"
-          onClick={handlePlay}
-          {...CharacterRect}
-          xlinkHref={revers ? img2 : img}
+          CharacterProp={CharacterProp}
         />
       </SVG>
     </>

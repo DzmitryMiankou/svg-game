@@ -2,6 +2,7 @@ import React from "react";
 import ladder from "../../../img/ladder.png";
 import flo from "../../../img/flo.png";
 import windows from "../../../img/window.png";
+import light from "../../../img/lightbulb.png";
 
 const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
   width,
@@ -64,6 +65,30 @@ const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
         width: width / 23,
         height: height / 4.5,
         xlinkHref: windows,
+      },
+      {
+        key: "Noactive8",
+        x: width / 7,
+        y: 1,
+        width: 12,
+        height: 12,
+        xlinkHref: light,
+      },
+      {
+        key: "Noactive9",
+        x: width / 3,
+        y: 1,
+        width: 12,
+        height: 12,
+        xlinkHref: light,
+      },
+      {
+        key: "Noactive10",
+        x: width / 4,
+        y: height / 7.9,
+        width: 12,
+        height: 12,
+        xlinkHref: light,
       },
     ];
   }, [height, width]);
