@@ -1,6 +1,25 @@
 import React from "react";
 import caseQvest from "../../../img/case.gif";
 import danger from "../../../img/dangGif.gif";
+import styled from "styled-components";
+
+const ForObj = styled.foreignObject`
+  background-color: #c1e9da;
+  border: 8px solid red;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+`;
+
+const ButtonClouse = styled.button`
+  padding: 10px 20px;
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+`;
 
 interface PropType<T> {
   width: T;
@@ -20,11 +39,12 @@ const ActiveElement: React.FC<PropType<number>> = ({
   keyd,
 }) => {
   const [openDial, setOpenDial] = React.useState<string>("");
+  const [openQvest, setOpenQvest] = React.useState<boolean>(false);
 
   const DialogProp = {
     width: 100,
     height: 50,
-    x: storeX / 1.2,
+    x: storeX - 88,
     y: storeY,
     fill: "#ffffff",
     rx: 10,
@@ -69,7 +89,7 @@ const ActiveElement: React.FC<PropType<number>> = ({
         storeY + hero > y
       ) {
         setOpenDial(text);
-        if (keyd === " ") return console.log("ok");
+        if (keyd === " ") setOpenQvest(true);
       }
     };
     setOpenDial("");
@@ -87,10 +107,31 @@ const ActiveElement: React.FC<PropType<number>> = ({
         {openDial !== "" ? (
           <>
             <rect {...DialogProp}></rect>
-            <foreignObject x={storeX / 1.2} y={storeY} width="100" height="50">
+            <foreignObject x={storeX - 88} y={storeY} width="100" height="50">
               <p style={{ textAlign: "center" }}>{openDial}</p>
             </foreignObject>
           </>
+        ) : (
+          <></>
+        )}
+      </>
+      <>
+        {openQvest ? (
+          <ForObj x={width / 4} y={height / 4} width="50%" height="50%">
+            <h1>
+              Кто-то играл и ушёл. Компьютер уже долго время включён и работает!
+              Отключать питание у компьютера рекомендуют, когда планируете
+              прекратить работу дольше, чем на 5 минут. Выключим его?
+            </h1>
+            <ButtonBox>
+              <ButtonClouse onClick={() => setOpenQvest(false)}>
+                Нет
+              </ButtonClouse>
+              <ButtonClouse onClick={() => setOpenQvest(false)}>
+                Да
+              </ButtonClouse>
+            </ButtonBox>
+          </ForObj>
         ) : (
           <></>
         )}

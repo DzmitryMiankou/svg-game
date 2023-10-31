@@ -220,15 +220,12 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
           sizeCh={CharacterProp.size}
           keyd={key}
         />
-
-        <g>
-          <image
-            overflow="visible"
-            onClick={handlePlay}
-            {...CharacterRect}
-            xlinkHref={revers ? img2 : img}
-          ></image>
-        </g>
+        <image
+          overflow="visible"
+          onClick={handlePlay}
+          {...CharacterRect}
+          xlinkHref={revers ? img2 : img}
+        />
       </SVG>
     </>
   );
