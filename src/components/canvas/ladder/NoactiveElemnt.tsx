@@ -3,6 +3,7 @@ import ladder from "../../../img/ladder.png";
 import flo from "../../../img/flo.png";
 import windows from "../../../img/window.png";
 import light from "../../../img/lightbulb.png";
+import armch from "../../../img/armch.png";
 
 const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
   width,
@@ -21,7 +22,7 @@ const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
       {
         key: "Noactive2",
         x: width / 2.97,
-        y: width / 10.4,
+        y: width / 10.6,
         width: width / 7,
         height: width / 9,
         xlinkHref: ladder,
@@ -45,7 +46,7 @@ const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
       {
         key: "Noactive5",
         x: 0,
-        y: width / 4.9,
+        y: width / 5.1,
         width: width / 23,
         height: height / 4.5,
         xlinkHref: ladder,
@@ -53,17 +54,15 @@ const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
       {
         key: "Noactive6",
         x: width / 10,
-        y: height / 20,
+        y: width / 15.7,
         width: width / 23,
-        height: height / 4.5,
         xlinkHref: windows,
       },
       {
         key: "Noactive7",
         x: width / 28,
-        y: height / 20,
+        y: width / 15.7,
         width: width / 23,
-        height: height / 4.5,
         xlinkHref: windows,
       },
       {
@@ -71,7 +70,6 @@ const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
         x: width / 7,
         y: 1,
         width: 12,
-        height: 12,
         xlinkHref: light,
       },
       {
@@ -79,16 +77,21 @@ const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
         x: width / 3,
         y: 1,
         width: 12,
-        height: 12,
         xlinkHref: light,
       },
       {
         key: "Noactive10",
         x: width / 4,
-        y: height / 7.9,
+        y: height / 8.1,
         width: 12,
-        height: 12,
         xlinkHref: light,
+      },
+      {
+        key: "Noactive11",
+        x: width / 2.7,
+        y: width / 77,
+        width: width / 48,
+        xlinkHref: armch,
       },
     ];
   }, [height, width]);

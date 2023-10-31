@@ -32,7 +32,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
 
   const { height, width } = get;
 
-  const CharacterProp = { size: width / 30, step: Math.floor(width / 300) };
+  const CharacterProp = { size: width / 34, step: Math.floor(width / 300) };
 
   const labyrinthProp = React.useMemo(() => {
     return [
@@ -71,7 +71,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
       {
         key: 5,
         x: 0,
-        y: width / 10.2,
+        y: width / 10.6,
         width: width / 2.6,
         height: width / 15,
         fill: ColourEnum.WallColour,
@@ -79,7 +79,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
       {
         key: 6,
         x: width / 25,
-        y: width / 4.9,
+        y: width / 5.1,
         width: width / 2.4,
         height: width / 11,
         fill: ColourEnum.WallColour,

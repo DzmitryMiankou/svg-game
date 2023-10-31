@@ -52,7 +52,6 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
     x: prop.storeX,
     y: prop.storeY,
     width: prop.CharacterProp.size,
-    height: prop.CharacterProp.size,
   };
 
   const DialogProp = {
