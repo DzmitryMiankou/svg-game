@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/svg-game/static/css/main.ba997a2e.css",
+    "main.js": "/svg-game/static/js/main.3ac3490b.js",
+    "static/media/SpaceHarrierTheme.mp3": "/svg-game/static/media/SpaceHarrierTheme.de3df93864c483fe321e.mp3",
+    "static/media/flo.png": "/svg-game/static/media/flo.cf16b64c44ef3687fc27.png",
+    "static/media/1.png": "/svg-game/static/media/1.ec0857d93e43e3be7cb5.png",
+    "static/media/2.png": "/svg-game/static/media/2.8680a18a49e68efbfee0.png",
+    "static/media/dangGif.gif": "/svg-game/static/media/dangGif.3609a159d7b23f82b309.gif",
+    "static/media/window.png": "/svg-game/static/media/window.1da6f6a5376545fb7b7f.png",
+    "index.html": "/svg-game/index.html",
+    "main.ba997a2e.css.map": "/svg-game/static/css/main.ba997a2e.css.map",
+    "main.3ac3490b.js.map": "/svg-game/static/js/main.3ac3490b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ba997a2e.css",
+    "static/js/main.3ac3490b.js"
+  ]
+}
