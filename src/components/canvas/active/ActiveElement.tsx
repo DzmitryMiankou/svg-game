@@ -2,7 +2,7 @@ import React from "react";
 import caseQvest from "../../../img/case.gif";
 import danger from "../../../img/dangGif.gif";
 import styled from "styled-components";
-import img from "../../../img/pixel-art-santa-claus-with-a-bag-of-gifts-isolated-on-white-background-8-bit-christmas-character-winter-holiday-clipart-old-school-vintage-retro-80s-90s-slot-machinevideo-game-graphics-700-224060105.png";
+import img from "../../../img/1.png";
 import img2 from "../../../img/2.png";
 import audio from "../../../audio/SpaceHarrierTheme.mp3";
 
