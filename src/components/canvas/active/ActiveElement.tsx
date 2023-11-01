@@ -5,10 +5,11 @@ import styled from "styled-components";
 import img from "../../../img/1.png";
 import img2 from "../../../img/2.png";
 import audio from "../../../audio/SpaceHarrierTheme.mp3";
+import forest from "../../../img/frost.png";
 
 const ForObj = styled.foreignObject`
-  background-color: #c1e9da;
-  border: 8px solid red;
+  background-color: #fff8ad;
+  border: 8px solid #906200;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -82,6 +83,15 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
         height: prop.width / 36,
         xlinkHref: danger,
         text: "Посмотрим, что там?",
+      },
+      {
+        key: "case3",
+        x: prop.width / 2.8,
+        y: prop.width / 3.46,
+        width: prop.width / 37,
+        height: prop.width / 33,
+        xlinkHref: forest,
+        text: "Не так стоит холодильник",
       },
     ];
   }, [prop.width]);

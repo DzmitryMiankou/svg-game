@@ -1,9 +1,11 @@
 import React from "react";
 import ladder from "../../../img/ladder.png";
 import flo from "../../../img/flo.png";
+import flo2 from "../../../img/flo2.png";
 import windows from "../../../img/window.png";
 import light from "../../../img/lightbulb.png";
 import armch from "../../../img/armch.png";
+import table from "../../../img/table.png";
 
 const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
   width,
@@ -92,6 +94,20 @@ const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
         y: width / 77,
         width: width / 48,
         xlinkHref: armch,
+      },
+      {
+        key: "Noactive12",
+        x: width / 3.1,
+        y: width / 65,
+        width: width / 65,
+        xlinkHref: flo2,
+      },
+      {
+        key: "Noactive12",
+        x: width / 3.3,
+        y: width / 3.35,
+        width: width / 20,
+        xlinkHref: table,
       },
     ];
   }, [height, width]);
