@@ -6,6 +6,8 @@ import windows from "../../../img/window.png";
 import light from "../../../img/lightbulb.png";
 import armch from "../../../img/armch.png";
 import table from "../../../img/table.png";
+import batteries from "../../../img/batteries.png";
+import sofa from "../../../img/sofa.png";
 
 const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
   width,
@@ -103,11 +105,46 @@ const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
         xlinkHref: flo2,
       },
       {
-        key: "Noactive12",
+        key: "Noactive13",
         x: width / 3.3,
         y: width / 3.35,
         width: width / 20,
         xlinkHref: table,
+      },
+      {
+        key: "Noactive14",
+        x: width / 2.63,
+        y: width / 3.31,
+        width: width / 36,
+        xlinkHref: batteries,
+      },
+      {
+        key: "Noactive15",
+        x: width / 3.63,
+        y: width / 3.31,
+        width: width / 65,
+        xlinkHref: flo2,
+      },
+      {
+        key: "Noactive16",
+        x: width / 2.23,
+        y: width / 3.44,
+        width: width / 45,
+        xlinkHref: flo,
+      },
+      {
+        key: "Noactive17",
+        x: width / 5.23,
+        y: width / 5.99,
+        width: width / 45,
+        xlinkHref: flo,
+      },
+      {
+        key: "Noactive18",
+        x: width / 9,
+        y: width / 5.7,
+        width: width / 15,
+        xlinkHref: sofa,
       },
     ];
   }, [height, width]);
