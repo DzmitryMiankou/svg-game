@@ -229,6 +229,13 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
           keyd={key}
           CharacterProp={CharacterProp}
         />
+        <foreignObject
+          style={{ backgroundColor: "red" }}
+          x={width / 1.15}
+          y={height / 1.4}
+          width={width / 10}
+          height={width / 10}
+        ></foreignObject>
       </SVG>
     </>
   );

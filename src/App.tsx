@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import Canvas from "./components/canvas/Canvas";
 
 export interface StateSizeCanvasType {
@@ -21,4 +21,4 @@ const App: React.FC = () => {
   return <Canvas get={get} />;
 };
 
-export default memo(App);
+export default App;
