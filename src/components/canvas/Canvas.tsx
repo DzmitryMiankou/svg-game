@@ -72,7 +72,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         key: 5,
         x: 0,
         y: width / 10.6,
-        width: width / 2.6,
+        width: width / 2.55,
         height: width / 15,
         fill: ColourEnum.WallColour,
       },
@@ -111,7 +111,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
     ];
   }, [height, width]);
 
-  const switchKays = React.useCallback(
+  const switchKeys = React.useCallback(
     (key: string) => {
       setKey(key);
       switch (key) {
@@ -141,14 +141,11 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   );
 
   React.useEffect(() => {
-    const keyDownHandler = (event: KeyboardEvent) => {
-      const key = event.key;
-      return switchKays(key);
-    };
+    const keyDownHandler = (event: KeyboardEvent) => switchKeys(event.key);
 
     window.addEventListener("keydown", keyDownHandler);
     return window.removeEventListener("keyup", keyDownHandler);
-  }, [switchKays]);
+  }, [switchKeys]);
 
   React.useEffect(() => {
     if (store.x < 0) dispatch(setKoordActionX(CharacterProp.step));
@@ -182,9 +179,9 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
       }
     };
 
-    labyrinthProp.forEach(({ x, y, height, width }) => {
-      return colisObj(CharacterProp.size, x, y, height, width);
-    });
+    labyrinthProp.forEach(({ x, y, height, width }) =>
+      colisObj(CharacterProp.size, x, y, height, width)
+    );
   }, [
     dispatch,
     height,

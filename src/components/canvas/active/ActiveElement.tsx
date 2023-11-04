@@ -6,6 +6,7 @@ import img from "../../../img/1.png";
 import img2 from "../../../img/2.png";
 import audio from "../../../audio/SpaceHarrierTheme.mp3";
 import forest from "../../../img/frost.png";
+import lightbulbActive from "../../../img/lightbulbActive.gif";
 
 const ForObj = styled.foreignObject`
   background-color: #fff8ad;
@@ -13,6 +14,8 @@ const ForObj = styled.foreignObject`
   display: flex;
   flex-direction: column;
   text-align: center;
+  width: 50%;
+  height: 50%;
 `;
 
 const ButtonClouse = styled.button`
@@ -58,7 +61,7 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
   const DialogProp = {
     width: 100,
     height: 50,
-    x: prop.storeX - 88,
+    x: prop.storeX - 100,
     y: prop.storeY,
     fill: "#ffffff",
     rx: 10,
@@ -93,6 +96,15 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
         xlinkHref: forest,
         text: "Не так стоит холодильник",
       },
+      {
+        key: "case4",
+        x: prop.width / 2.8,
+        y: prop.width / 16.2,
+        width: prop.width / 130,
+        height: prop.width / 130,
+        xlinkHref: lightbulbActive,
+        text: "Лампочка не исправна",
+      },
     ];
   }, [prop.width]);
 
@@ -116,9 +128,9 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
       }
     };
     setOpenDial("");
-    CaseProp.forEach(({ x, y, height, width, text }) => {
-      return colisObj(prop.sizeCh, x, y, height, width, text);
-    });
+    CaseProp.forEach(({ x, y, height, width, text }) =>
+      colisObj(prop.sizeCh, x, y, height, width, text)
+    );
   }, [CaseProp, prop.height, prop.keyd, prop.sizeCh, prop.storeX, prop.storeY]);
 
   return (
@@ -131,7 +143,7 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
           <>
             <rect {...DialogProp}></rect>
             <foreignObject
-              x={prop.storeX - 88}
+              x={prop.storeX - 100}
               y={prop.storeY}
               width="100"
               height="50"
@@ -151,12 +163,7 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
           xlinkHref={prop.revers ? img2 : img}
         />
         {openQvest ? (
-          <ForObj
-            x={prop.width / 4}
-            y={prop.height / 4}
-            width="50%"
-            height="50%"
-          >
+          <ForObj x={prop.width / 4} y={prop.height / 4}>
             <h1>
               Кто-то играл и ушёл. Компьютер уже долгое время включён и
               работает! Отключать питание у компьютера рекомендуют, когда
