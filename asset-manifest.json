@@ -1,19 +1,20 @@
 {
   "files": {
     "main.css": "/svg-game/static/css/main.ba997a2e.css",
-    "main.js": "/svg-game/static/js/main.2f0c90f4.js",
+    "main.js": "/svg-game/static/js/main.a1f78b06.js",
     "static/media/SpaceHarrierTheme.mp3": "/svg-game/static/media/SpaceHarrierTheme.de3df93864c483fe321e.mp3",
     "static/media/1.png": "/svg-game/static/media/1.ec0857d93e43e3be7cb5.png",
     "static/media/2.png": "/svg-game/static/media/2.8680a18a49e68efbfee0.png",
     "static/media/frost.png": "/svg-game/static/media/frost.633e27d9c95a91726120.png",
+    "static/media/ladder.png": "/svg-game/static/media/ladder.b3284c35d3cff64ecd60.png",
     "static/media/window.png": "/svg-game/static/media/window.1da6f6a5376545fb7b7f.png",
     "static/media/flo.png": "/svg-game/static/media/flo.6d2a72f9b1c9bd7294f7.png",
     "index.html": "/svg-game/index.html",
     "main.ba997a2e.css.map": "/svg-game/static/css/main.ba997a2e.css.map",
-    "main.2f0c90f4.js.map": "/svg-game/static/js/main.2f0c90f4.js.map"
+    "main.a1f78b06.js.map": "/svg-game/static/js/main.a1f78b06.js.map"
   },
   "entrypoints": [
     "static/css/main.ba997a2e.css",
-    "static/js/main.2f0c90f4.js"
+    "static/js/main.a1f78b06.js"
   ]
 }
