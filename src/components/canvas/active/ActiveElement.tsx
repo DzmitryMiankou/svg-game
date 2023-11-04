@@ -80,8 +80,8 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
       },
       {
         key: "case2",
-        x: prop.width / 3.8,
-        y: prop.width / 6,
+        x: prop.width / 9,
+        y: prop.width / 6.1,
         width: prop.width / 36,
         height: prop.width / 36,
         xlinkHref: danger,

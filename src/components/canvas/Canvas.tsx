@@ -38,10 +38,10 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
     return [
       {
         key: 1,
-        x: width / 2,
-        y: width / 30,
-        width: width / 35,
-        height: height,
+        x: width / 2.2,
+        y: 0,
+        width: width / 1.8,
+        height: width / 15,
         fill: ColourEnum.WallColour,
       },
       {
@@ -108,8 +108,16 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         height: width / 9,
         fill: ColourEnum.WallColour,
       },
+      {
+        key: 10,
+        x: width / 2,
+        y: width / 10,
+        width: width / 35,
+        height: width / 2,
+        fill: ColourEnum.WallColour,
+      },
     ];
-  }, [height, width]);
+  }, [width]);
 
   const switchKeys = React.useCallback(
     (key: string) => {

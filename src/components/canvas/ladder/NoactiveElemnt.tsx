@@ -122,7 +122,7 @@ const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
       },
       {
         key: "Noactive16",
-        x: width / 2.23,
+        x: width / 2.33,
         y: width / 3.44,
         width: width / 45,
         xlinkHref: flo,
@@ -136,7 +136,7 @@ const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
       },
       {
         key: "Noactive18",
-        x: width / 9,
+        x: width / 4,
         y: width / 5.7,
         width: width / 15,
         xlinkHref: sofa,
@@ -154,6 +154,41 @@ const NoactiveElemnt: React.FC<{ width: number; height: number }> = ({
         y: width / 3.47,
         width: width / 42,
         xlinkHref: flo,
+      },
+      {
+        key: "Noactive21",
+        x: width / 15,
+        y: width / 6.2,
+        width: width / 130,
+        xlinkHref: light,
+      },
+      {
+        key: "Noactive22",
+        x: width / 3,
+        y: width / 6.2,
+        width: width / 130,
+        xlinkHref: light,
+      },
+      {
+        key: "Noactive23",
+        x: width / 5,
+        y: width / 3.5,
+        width: width / 130,
+        xlinkHref: light,
+      },
+      {
+        key: "Noactive24",
+        x: width / 2.14,
+        y: width / 5.23,
+        width: width / 35,
+        xlinkHref: ladder,
+      },
+      {
+        key: "Noactive25",
+        x: width / 2.14,
+        y: width / 16,
+        width: width / 35,
+        xlinkHref: ladder,
       },
     ];
   }, [height, width]);
