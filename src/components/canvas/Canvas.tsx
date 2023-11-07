@@ -107,6 +107,34 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         width: width / 35,
         height: width / 2,
       },
+      {
+        key: 11,
+        x: width / 2,
+        y: width / 10,
+        width: width / 8,
+        height: width / 35,
+      },
+      {
+        key: 12,
+        x: width / 1.5,
+        y: width / 10,
+        width: width / 3,
+        height: width / 35,
+      },
+      {
+        key: 13,
+        x: width / 2,
+        y: width / 6.2,
+        width: width / 3.5,
+        height: width / 35,
+      },
+      {
+        key: 14,
+        x: width / 1.2,
+        y: width / 6.2,
+        width: width / 6,
+        height: width / 35,
+      },
     ];
   }, [width]);
 

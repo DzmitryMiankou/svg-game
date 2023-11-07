@@ -1,9 +1,11 @@
 import React, { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
+import { ReactComponent as Arrow } from "../../img/arrow.svg";
+import { ReactComponent as Probel } from "../../img/propbel.svg";
 
 const BoxWindow = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 100vh;
   flex-direction: column;
@@ -24,9 +26,35 @@ const ButtonStart = styled.button`
     color: #3b2414;
   }
 `;
+
 const H1 = styled.h1`
-  font-size: 3rem;
+  font-size: 7rem;
   text-transform: uppercase;
+`;
+
+const H2 = styled.h2`
+  font-size: 2rem;
+  text-transform: uppercase;
+`;
+
+const Box = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const BoxImage = styled.div`
+  width: 20%;
+  min-width: 200px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+const BoxImage2 = styled(BoxImage)`
+  width: 10%;
 `;
 
 const StartWindow: React.FC<{
@@ -44,6 +72,17 @@ const StartWindow: React.FC<{
       <ButtonStart type="button" onClick={handlerClick}>
         начать игру
       </ButtonStart>
+      <H2>управление игрой</H2>
+      <Box>
+        <BoxImage>
+          <p>выполнить действие</p>
+          <Probel />
+        </BoxImage>
+        <BoxImage2>
+          <p>передвижение</p>
+          <Arrow />
+        </BoxImage2>
+      </Box>
     </BoxWindow>
   );
 };

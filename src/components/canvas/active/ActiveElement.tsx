@@ -27,6 +27,10 @@ const ButtonBox = styled.div`
   gap: 10px;
 `;
 
+const P = styled.p`
+  text-align: center;
+`;
+
 interface PropType<T> {
   width: T;
   height: T;
@@ -138,7 +142,7 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
               width="100"
               height="50"
             >
-              <p style={{ textAlign: "center" }}>{openDial}</p>
+              <P>{openDial}</P>
             </foreignObject>
           </>
         ) : (
