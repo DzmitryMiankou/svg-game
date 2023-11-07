@@ -152,6 +152,27 @@ const Bricks: React.FC<{ width: number }> = ({ width }) => {
         width: width / 30,
         xlinkHref: bricks1,
       },
+      {
+        key: "br22",
+        x: width / 2.25,
+        y: 0,
+        width: width / 7,
+        xlinkHref: bricks,
+      },
+      {
+        key: "br23",
+        x: width / 2,
+        y: width / 25,
+        width: width / 7,
+        xlinkHref: bricks,
+      },
+      {
+        key: "br24",
+        x: width / 1.5,
+        y: 0,
+        width: width / 5,
+        xlinkHref: bricks,
+      },
     ];
   }, [width]);
 

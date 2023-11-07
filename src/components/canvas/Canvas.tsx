@@ -42,7 +42,6 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         y: 0,
         width: width / 1.8,
         height: width / 15,
-        fill: ColourEnum.WallColour,
       },
       {
         key: 2,
@@ -124,14 +123,14 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
       {
         key: 13,
         x: width / 2,
-        y: width / 6.2,
+        y: width / 6.3,
         width: width / 3.5,
         height: width / 35,
       },
       {
         key: 14,
         x: width / 1.2,
-        y: width / 6.2,
+        y: width / 6.3,
         width: width / 6,
         height: width / 35,
       },

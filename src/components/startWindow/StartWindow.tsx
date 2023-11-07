@@ -8,6 +8,7 @@ const BoxWindow = styled.div`
   justify-content: space-around;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
   flex-direction: column;
   background-color: #e6af4a;
 `;
@@ -30,11 +31,20 @@ const ButtonStart = styled.button`
 const H1 = styled.h1`
   font-size: 7rem;
   text-transform: uppercase;
+  @media (max-width: 1100px) {
+    font-size: 5rem;
+  }
+  @media (max-width: 770px) {
+    font-size: 2rem;
+  }
 `;
 
 const H2 = styled.h2`
   font-size: 2rem;
   text-transform: uppercase;
+  @media (max-width: 770px) {
+    font-size: 1rem;
+  }
 `;
 
 const Box = styled.div`
@@ -52,6 +62,10 @@ const BoxImage = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  @media (max-width: 770px) {
+    font-size: 1rem;
+    min-width: 100px;
+  }
 `;
 const BoxImage2 = styled(BoxImage)`
   width: 10%;
