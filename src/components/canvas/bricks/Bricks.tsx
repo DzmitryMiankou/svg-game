@@ -1,5 +1,6 @@
 import React from "react";
 import bricks from "../../../img/vs.png";
+import bricks1 from "../../../img/vs1.png";
 
 const Bricks: React.FC<{ width: number }> = ({ width }) => {
   const BrikcsProp = React.useMemo(() => {
@@ -111,10 +112,45 @@ const Bricks: React.FC<{ width: number }> = ({ width }) => {
       },
       {
         key: "br16",
+        x: width / 15,
+        y: width / 2.2,
+        width: width / 6,
+        xlinkHref: bricks,
+      },
+      {
+        key: "br17",
         x: width / 6,
         y: width / 3.1,
         width: width / 6,
         xlinkHref: bricks,
+      },
+      {
+        key: "br18",
+        x: 0,
+        y: width / 7.435,
+        width: width / 6,
+        xlinkHref: bricks,
+      },
+      {
+        key: "br19",
+        x: 0,
+        y: width / 3,
+        width: width / 19,
+        xlinkHref: bricks1,
+      },
+      {
+        key: "br20",
+        x: width / 15,
+        y: width / 3,
+        width: width / 30,
+        xlinkHref: bricks1,
+      },
+      {
+        key: "br21",
+        x: width / 2.35,
+        y: width / 4,
+        width: width / 30,
+        xlinkHref: bricks1,
       },
     ];
   }, [width]);

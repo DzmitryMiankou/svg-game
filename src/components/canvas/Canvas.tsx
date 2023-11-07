@@ -50,7 +50,6 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         y: 0,
         width: width / 35,
         height: width / 3.4983,
-        fill: ColourEnum.WallColour,
       },
       {
         key: 3,
@@ -58,7 +57,6 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         y: width / 30,
         width: width / 6,
         height: width / 35,
-        fill: ColourEnum.WallColour,
       },
       {
         key: 4,
@@ -66,7 +64,6 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         y: width / 30,
         width: width / 4.2,
         height: width / 35,
-        fill: ColourEnum.WallColour,
       },
       {
         key: 5,
@@ -74,7 +71,6 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         y: width / 10.6,
         width: width / 2.55,
         height: width / 15,
-        fill: ColourEnum.WallColour,
       },
       {
         key: 6,
@@ -82,7 +78,6 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         y: width / 5.13,
         width: width / 2.4,
         height: width / 11,
-        fill: ColourEnum.WallColour,
       },
       {
         key: 7,
@@ -90,7 +85,6 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         y: width / 3.13,
         width: width / 3,
         height: width / 25,
-        fill: ColourEnum.WallColour,
       },
       {
         key: 8,
@@ -98,7 +92,6 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         y: width / 3.13,
         width: width / 8,
         height: width / 25,
-        fill: ColourEnum.WallColour,
       },
       {
         key: 9,
@@ -106,7 +99,6 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         y: width / 2.55,
         width: width / 2,
         height: width / 9,
-        fill: ColourEnum.WallColour,
       },
       {
         key: 10,
@@ -114,13 +106,12 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         y: width / 10,
         width: width / 35,
         height: width / 2,
-        fill: ColourEnum.WallColour,
       },
     ];
   }, [width]);
 
   const switchKeys = React.useCallback(
-    (key: string) => {
+    (key: string): void => {
       setKey(key);
       switch (key) {
         case KeyEnum.ArrowRight:
@@ -149,13 +140,14 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   );
 
   React.useEffect(() => {
-    const keyDownHandler = (event: KeyboardEvent) => switchKeys(event.key);
+    const keyDownHandler = (event: KeyboardEvent): void =>
+      switchKeys(event.key);
 
     window.addEventListener("keydown", keyDownHandler);
     return window.removeEventListener("keyup", keyDownHandler);
   }, [switchKeys]);
 
-  React.useEffect(() => {
+  React.useEffect((): void => {
     if (store.x < 0) dispatch(setKoordActionX(CharacterProp.step));
     if (store.x > width - CharacterProp.size)
       dispatch(setKoordActionX(-CharacterProp.step));
@@ -169,7 +161,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
       y: number,
       height: number,
       width: number
-    ) => {
+    ): void => {
       if (
         store.x < x + width &&
         store.x + hero > x &&
@@ -220,7 +212,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         <NoactiveElemnt width={width} height={height} />
         <g>
           {labyrinthProp.map((prop) => (
-            <rect {...prop} />
+            <rect fill={ColourEnum.WallColour} {...prop} />
           ))}
         </g>
         <Bricks width={width} />
@@ -246,4 +238,4 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   );
 };
 
-export default Canvas;
+export default React.memo(Canvas);

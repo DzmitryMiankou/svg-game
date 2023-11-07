@@ -4,7 +4,6 @@ import danger from "../../../img/dangGif.gif";
 import styled from "styled-components";
 import img from "../../../img/1.png";
 import img2 from "../../../img/2.png";
-import audio from "../../../audio/SpaceHarrierTheme.mp3";
 import forest from "../../../img/frost.png";
 import lightbulbActive from "../../../img/lightbulbActive.gif";
 
@@ -42,15 +41,6 @@ interface PropType<T> {
 const ActiveElement: React.FC<PropType<number>> = (prop) => {
   const [openDial, setOpenDial] = React.useState<string>("");
   const [openQvest, setOpenQvest] = React.useState<boolean>(false);
-
-  const music = React.useMemo(() => {
-    return new Audio(audio);
-  }, []);
-
-  const handlePlay = React.useCallback(() => {
-    music.loop = true;
-    music.play();
-  }, [music]);
 
   const CharacterRect = {
     x: prop.storeX,
@@ -108,7 +98,7 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
     ];
   }, [prop.width]);
 
-  React.useEffect(() => {
+  React.useEffect((): void => {
     const colisObj = (
       hero: number,
       x: number,
@@ -116,7 +106,7 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
       height: number,
       width: number,
       text: string
-    ) => {
+    ): void => {
       if (
         prop.storeX < x + width &&
         prop.storeX + hero > x &&
@@ -158,7 +148,6 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
       <>
         <image
           overflow="visible"
-          onClick={handlePlay}
           {...CharacterRect}
           xlinkHref={prop.revers ? img2 : img}
         />
