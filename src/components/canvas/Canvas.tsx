@@ -270,24 +270,14 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
           keyd={key}
           CharacterProp={CharacterProp}
         />
-        <foreignObject
-          x={width / 1.07}
-          y={height / 1.4}
-          width={width / 23}
-          height={width / 32}
-        >
+        <foreignObject x={width - 90} y={height / 1.4} width={80} height={42}>
           {["˂", "˃"].map((dats) => (
             <Button key={dats} onMouseDown={() => switchKeys(dats)}>
               {dats}
             </Button>
           ))}
         </foreignObject>
-        <foreignObject
-          x={width / 50}
-          y={height / 1.5}
-          width={width / 10}
-          height={width / 20}
-        >
+        <foreignObject x={width / 50} y={height / 1.5} width={40} height={90}>
           <ButBox>
             {["˄", "˅"].map((dats) => (
               <Button key={dats} onMouseDown={() => switchKeys(dats)}>
