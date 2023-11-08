@@ -24,6 +24,19 @@ const SVG = styled.svg`
   width: 100%;
 `;
 
+const ButBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+`;
+
+const Button = styled.button`
+  padding: 10px;
+  font-size: 14px;
+  opacity: 40%;
+  margin: 2px;
+`;
+
 const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   const [revers, setRevers] = React.useState<boolean>(false);
   const store = useSelector((state: RootState) => state.koord);
@@ -141,22 +154,26 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
     (key: string): void => {
       setKey(key);
       switch (key) {
+        case `˃`:
         case KeyEnum.ArrowRight:
           setRevers(false);
-          setKey(KeyEnum.ArrowRight);
+          setKey(key);
           dispatch(setKoordActionX(CharacterProp.step));
           break;
+        case `˂`:
         case KeyEnum.ArrowLeft:
           setRevers(true);
-          setKey(KeyEnum.ArrowLeft);
+          setKey(key);
           dispatch(setKoordActionX(-CharacterProp.step));
           break;
+        case `˄`:
         case KeyEnum.ArrowUp:
-          setKey(KeyEnum.ArrowUp);
+          setKey(key);
           dispatch(setKoordActionY(-CharacterProp.step));
           break;
+        case `˅`:
         case KeyEnum.ArrowDown:
-          setKey(KeyEnum.ArrowDown);
+          setKey(key);
           dispatch(setKoordActionY(CharacterProp.step));
           break;
         default:
@@ -195,13 +212,13 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         store.y < y + height &&
         store.y + hero > y
       ) {
-        if (key === KeyEnum.ArrowRight)
+        if (key === KeyEnum.ArrowRight || key === `˃`)
           dispatch(setKoordActionX(-CharacterProp.step));
-        if (key === KeyEnum.ArrowLeft)
+        if (key === KeyEnum.ArrowLeft || key === `˂`)
           dispatch(setKoordActionX(CharacterProp.step));
-        if (key === KeyEnum.ArrowDown)
+        if (key === KeyEnum.ArrowDown || key === `˅`)
           dispatch(setKoordActionY(-CharacterProp.step));
-        if (key === KeyEnum.ArrowUp)
+        if (key === KeyEnum.ArrowUp || key === `˄`)
           dispatch(setKoordActionY(CharacterProp.step));
       }
     };
@@ -254,12 +271,31 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
           CharacterProp={CharacterProp}
         />
         <foreignObject
-          style={{ backgroundColor: "red" }}
-          x={width / 1.15}
+          x={width / 1.07}
           y={height / 1.4}
+          width={width / 23}
+          height={width / 32}
+        >
+          {["˂", "˃"].map((dats) => (
+            <Button key={dats} onMouseDown={() => switchKeys(dats)}>
+              {dats}
+            </Button>
+          ))}
+        </foreignObject>
+        <foreignObject
+          x={width / 50}
+          y={height / 1.5}
           width={width / 10}
-          height={width / 10}
-        ></foreignObject>
+          height={width / 20}
+        >
+          <ButBox>
+            {["˄", "˅"].map((dats) => (
+              <Button key={dats} onMouseDown={() => switchKeys(dats)}>
+                {dats}
+              </Button>
+            ))}
+          </ButBox>
+        </foreignObject>
       </SVG>
     </>
   );
