@@ -4,10 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../redux/store";
 import { setKoordActionX, setKoordActionY } from "../../redux/koordReducer";
 import styled from "styled-components";
-import NoactiveElemnt from "./ladder/NoactiveElemnt";
 import ActiveElement from "./active/ActiveElement";
-import Bricks from "./bricks/Bricks";
-import { labyrinthProp } from "./labyrinthProp";
+import { labyrinthProp, BrikcsProp, noActiveElemntProp } from "./ElementProps";
 
 const enum ColourEnum {
   WallColour = "#3c2415",
@@ -54,7 +52,10 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
 
   const { height, width } = get;
 
-  const CharacterProp = { size: width / 34, step: Math.floor(width / 300) };
+  const CharacterProp = {
+    size: Math.floor(width / 34),
+    step: Math.floor(width / 300),
+  };
 
   const switchKeys = React.useCallback(
     (key: string): void => {
@@ -152,55 +153,61 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   ]);
 
   return (
-    <>
-      <SVG
-        x="0px"
-        y="0px"
-        viewBox={`0 0 ${width} ${height}`}
-        enableBackground={`new 0 0 ${width} ${height}`}
-      >
-        <rect
-          fill={ColourEnum.BGColour}
-          width={width}
-          height={height}
-          stroke={ColourEnum.WallColour}
-          strokeWidth="1%"
-        />
-        <NoactiveElemnt width={width} height={height} />
-        <g>
-          {labyrinthProp(width).map((prop) => (
-            <rect fill={ColourEnum.WallColour} {...prop} />
-          ))}
-        </g>
-        <Bricks width={width} />
-        <ActiveElement
-          revers={revers}
-          width={width}
-          height={height}
-          storeX={store.x}
-          storeY={store.y}
-          sizeCh={CharacterProp.size}
-          keyd={key}
-          CharacterProp={CharacterProp}
-        />
-        <foreignObject x={width - 90} y={height / 1.4} width={80} height={42}>
-          {["˂", "˃"].map((dats) => (
+    <SVG
+      x="0px"
+      y="0px"
+      viewBox={`0 0 ${width} ${height}`}
+      enableBackground={`new 0 0 ${width} ${height}`}
+    >
+      <rect
+        fill={ColourEnum.BGColour}
+        width={width}
+        height={height}
+        stroke={ColourEnum.WallColour}
+        strokeWidth="1%"
+      />
+      <>
+        {noActiveElemntProp(width).map((prop) => (
+          <image overflow="visible" {...prop} />
+        ))}
+      </>
+      <>
+        {labyrinthProp(width).map((prop) => (
+          <rect fill={ColourEnum.WallColour} {...prop} />
+        ))}
+      </>
+      <>
+        {BrikcsProp(width).map((props) => (
+          <image {...props} />
+        ))}
+      </>
+      <ActiveElement
+        revers={revers}
+        width={width}
+        height={height}
+        storeX={store.x}
+        storeY={store.y}
+        sizeCh={CharacterProp.size}
+        keyd={key}
+        CharacterProp={CharacterProp}
+      />
+      <foreignObject x={width - 90} y={height / 1.4} width={80} height={42}>
+        {["˂", "˃"].map((dats) => (
+          <Button key={dats} onMouseDown={() => switchKeys(dats)}>
+            {dats}
+          </Button>
+        ))}
+      </foreignObject>
+      <foreignObject x={width / 50} y={height / 1.5} width={40} height={90}>
+        <ButBox>
+          {["˄", "˅"].map((dats) => (
             <Button key={dats} onMouseDown={() => switchKeys(dats)}>
               {dats}
             </Button>
           ))}
-        </foreignObject>
-        <foreignObject x={width / 50} y={height / 1.5} width={40} height={90}>
-          <ButBox>
-            {["˄", "˅"].map((dats) => (
-              <Button key={dats} onMouseDown={() => switchKeys(dats)}>
-                {dats}
-              </Button>
-            ))}
-          </ButBox>
-        </foreignObject>
-      </SVG>
-    </>
+        </ButBox>
+      </foreignObject>
+    </SVG>
   );
 };
 
