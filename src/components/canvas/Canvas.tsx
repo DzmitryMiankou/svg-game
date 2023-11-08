@@ -7,6 +7,7 @@ import styled from "styled-components";
 import NoactiveElemnt from "./ladder/NoactiveElemnt";
 import ActiveElement from "./active/ActiveElement";
 import Bricks from "./bricks/Bricks";
+import { labyrinthProp } from "./labyrinthProp";
 
 const enum ColourEnum {
   WallColour = "#3c2415",
@@ -18,6 +19,14 @@ const enum KeyEnum {
   ArrowLeft = "ArrowLeft",
   ArrowUp = "ArrowUp",
   ArrowDown = "ArrowDown",
+  w = "w",
+  s = "s",
+  d = "d",
+  a = "a",
+  R = "˃",
+  L = "˂",
+  U = "˄",
+  D = "˅",
 }
 
 const SVG = styled.svg`
@@ -47,131 +56,32 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
 
   const CharacterProp = { size: width / 34, step: Math.floor(width / 300) };
 
-  const labyrinthProp = React.useMemo(() => {
-    return [
-      {
-        key: 1,
-        x: width / 2.2,
-        y: 0,
-        width: width / 1.8,
-        height: width / 15,
-      },
-      {
-        key: 2,
-        x: width / 2.3,
-        y: 0,
-        width: width / 35,
-        height: width / 3.4983,
-      },
-      {
-        key: 3,
-        x: 0,
-        y: width / 30,
-        width: width / 6,
-        height: width / 35,
-      },
-      {
-        key: 4,
-        x: width / 4.8,
-        y: width / 30,
-        width: width / 4.2,
-        height: width / 35,
-      },
-      {
-        key: 5,
-        x: 0,
-        y: width / 10.6,
-        width: width / 2.55,
-        height: width / 15,
-      },
-      {
-        key: 6,
-        x: width / 25,
-        y: width / 5.13,
-        width: width / 2.4,
-        height: width / 11,
-      },
-      {
-        key: 7,
-        x: width / 6,
-        y: width / 3.13,
-        width: width / 3,
-        height: width / 25,
-      },
-      {
-        key: 8,
-        x: 0,
-        y: width / 3.13,
-        width: width / 8,
-        height: width / 25,
-      },
-      {
-        key: 9,
-        x: 0,
-        y: width / 2.55,
-        width: width / 2,
-        height: width / 9,
-      },
-      {
-        key: 10,
-        x: width / 2,
-        y: width / 10,
-        width: width / 35,
-        height: width / 2,
-      },
-      {
-        key: 11,
-        x: width / 2,
-        y: width / 10,
-        width: width / 8,
-        height: width / 35,
-      },
-      {
-        key: 12,
-        x: width / 1.5,
-        y: width / 10,
-        width: width / 3,
-        height: width / 35,
-      },
-      {
-        key: 13,
-        x: width / 2,
-        y: width / 6.3,
-        width: width / 3.5,
-        height: width / 35,
-      },
-      {
-        key: 14,
-        x: width / 1.2,
-        y: width / 6.3,
-        width: width / 6,
-        height: width / 35,
-      },
-    ];
-  }, [width]);
-
   const switchKeys = React.useCallback(
     (key: string): void => {
       setKey(key);
       switch (key) {
-        case `˃`:
+        case KeyEnum.R:
+        case KeyEnum.d:
         case KeyEnum.ArrowRight:
           setRevers(false);
           setKey(key);
           dispatch(setKoordActionX(CharacterProp.step));
           break;
-        case `˂`:
+        case KeyEnum.L:
+        case KeyEnum.a:
         case KeyEnum.ArrowLeft:
           setRevers(true);
           setKey(key);
           dispatch(setKoordActionX(-CharacterProp.step));
           break;
-        case `˄`:
+        case KeyEnum.U:
+        case KeyEnum.w:
         case KeyEnum.ArrowUp:
           setKey(key);
           dispatch(setKoordActionY(-CharacterProp.step));
           break;
-        case `˅`:
+        case KeyEnum.D:
+        case KeyEnum.s:
         case KeyEnum.ArrowDown:
           setKey(key);
           dispatch(setKoordActionY(CharacterProp.step));
@@ -212,18 +122,22 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         store.y < y + height &&
         store.y + hero > y
       ) {
-        if (key === KeyEnum.ArrowRight || key === `˃`)
+        if (
+          key === KeyEnum.ArrowRight ||
+          key === KeyEnum.R ||
+          key === KeyEnum.d
+        )
           dispatch(setKoordActionX(-CharacterProp.step));
-        if (key === KeyEnum.ArrowLeft || key === `˂`)
+        if (key === KeyEnum.ArrowLeft || key === KeyEnum.L || key === KeyEnum.a)
           dispatch(setKoordActionX(CharacterProp.step));
-        if (key === KeyEnum.ArrowDown || key === `˅`)
+        if (key === KeyEnum.ArrowDown || key === KeyEnum.D || key === KeyEnum.s)
           dispatch(setKoordActionY(-CharacterProp.step));
-        if (key === KeyEnum.ArrowUp || key === `˄`)
+        if (key === KeyEnum.ArrowUp || key === KeyEnum.U || key === KeyEnum.w)
           dispatch(setKoordActionY(CharacterProp.step));
       }
     };
 
-    labyrinthProp.forEach(({ x, y, height, width }) =>
+    labyrinthProp(width).forEach(({ x, y, height, width }) =>
       colisObj(CharacterProp.size, x, y, height, width)
     );
   }, [
@@ -232,7 +146,6 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
     CharacterProp.size,
     CharacterProp.step,
     key,
-    labyrinthProp,
     store.x,
     store.y,
     width,
@@ -255,7 +168,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         />
         <NoactiveElemnt width={width} height={height} />
         <g>
-          {labyrinthProp.map((prop) => (
+          {labyrinthProp(width).map((prop) => (
             <rect fill={ColourEnum.WallColour} {...prop} />
           ))}
         </g>
