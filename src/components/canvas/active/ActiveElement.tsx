@@ -66,9 +66,9 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
       {
         key: "case1",
         x: prop.width / 2.5,
-        y: 3,
-        width: prop.width / 30,
-        height: prop.width / 30,
+        y: 2,
+        width: prop.width / 32,
+        height: prop.width / 32,
         xlinkHref: caseQvest,
         text: "Упс, что-то не так",
       },

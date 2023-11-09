@@ -211,4 +211,4 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   );
 };
 
-export default React.memo(Canvas);
+export default Canvas;
