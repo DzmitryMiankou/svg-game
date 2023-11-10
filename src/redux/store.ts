@@ -1,7 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import koordReducer from "./koordReducer";
+import gameReducer from "./gameReducer";
 
-const rootReducers = combineReducers({ koord: koordReducer });
+const rootReducers = combineReducers({
+  koord: koordReducer,
+  game: gameReducer,
+});
 
 const persistedReducer = rootReducers;
 

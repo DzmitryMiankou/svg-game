@@ -4,6 +4,9 @@ import img from "../../../img/1.png";
 import img2 from "../../../img/2.png";
 import { CaseProp } from "./CaseProp";
 import Data from "../../../data/data.json";
+import { setGameAction } from "../../../redux/gameReducer";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../../redux/store";
 
 const ForObj = styled.foreignObject<{ $gameOver: boolean }>`
   background-color: ${(prop) => (prop.$gameOver ? "#ff0000" : "#fff8ad")};
@@ -42,10 +45,14 @@ interface PropType<T> {
 }
 
 const ActiveElement: FC<PropType<number>> = (prop) => {
+  const state = useSelector((store: RootState) => store.game);
+  const dispatch: AppDispatch = useDispatch();
   const [openDial, setOpenDial] = useState<string>("");
   const [qvest, setQvest] = useState<string>("");
   const [openQvest, setOpenQvest] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
+
+  console.log(state);
 
   const assignObj = useCallback(() => {
     let newArr = [];
@@ -61,8 +68,8 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
   };
 
   const DialogProp = {
-    width: Math.floor(prop.width / 15),
-    height: Math.floor(prop.width / 30),
+    width: 100,
+    height: 50,
     x: Math.floor(prop.storeX - 100),
     y: prop.storeY,
     fill: "#ffffff",
@@ -95,6 +102,7 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
       }
     };
     setOpenDial("");
+    setQvest("");
     assignObj().forEach(({ x, y, height, width, text, qvest, answer }) =>
       colisObj(prop.sizeCh, x, y, height, width, text, qvest, answer)
     );
@@ -107,6 +115,10 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
     prop.storeY,
     prop.width,
   ]);
+
+  const clickHandler = (answer: "Да" | "Нет") => {
+    dispatch(setGameAction(openDial));
+  };
 
   return (
     <>
@@ -125,8 +137,8 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
                   <foreignObject
                     x={Math.floor(prop.storeX - 100)}
                     y={prop.storeY}
-                    width={Math.floor(prop.width / 15)}
-                    height={Math.floor(prop.width / 30)}
+                    width={100}
+                    height={50}
                   >
                     <P>{openDial}</P>
                   </foreignObject>
@@ -151,7 +163,13 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
               ) : (
                 <ButtonBox>
                   {["Да", "Нет"].map((data, i) => (
-                    <ButtonClouse key={i} onClick={() => setOpenQvest(false)}>
+                    <ButtonClouse
+                      key={i}
+                      onClick={() => {
+                        setOpenQvest(false);
+                        clickHandler(data === "Да" ? "Да" : "Нет");
+                      }}
+                    >
                       {data}
                     </ButtonClouse>
                   ))}

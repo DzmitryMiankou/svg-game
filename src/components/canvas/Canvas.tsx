@@ -54,7 +54,7 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
 
   const CharacterProp = {
     size: Math.floor(width / 34),
-    step: Math.floor(width / 300),
+    step: Math.floor(width / 280),
   };
 
   const switchKeys = useCallback(
@@ -201,6 +201,9 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
           ))}
         </ButBox>
       </foreignObject>
+      <text x={width / 1.74} y={width / 22} fill="#d4ccb4" fontSize="490%">
+        3 ключа из 11
+      </text>
     </SVG>
   );
 };
