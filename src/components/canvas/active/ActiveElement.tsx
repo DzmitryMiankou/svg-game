@@ -1,11 +1,9 @@
 import React from "react";
-import caseQvest from "../../../img/case.gif";
-import danger from "../../../img/dangGif.gif";
 import styled from "styled-components";
 import img from "../../../img/1.png";
 import img2 from "../../../img/2.png";
-import forest from "../../../img/frost.png";
-import lightbulbActive from "../../../img/lightbulbActive.gif";
+import { CaseProp } from "./CaseProp";
+import Data from "../../../data/data.json";
 
 const ForObj = styled.foreignObject`
   background-color: #fff8ad;
@@ -44,7 +42,18 @@ interface PropType<T> {
 
 const ActiveElement: React.FC<PropType<number>> = (prop) => {
   const [openDial, setOpenDial] = React.useState<string>("");
+  const [qvest, setQvest] = React.useState<string>("");
   const [openQvest, setOpenQvest] = React.useState<boolean>(false);
+  const [gameOver, setGameOver] = React.useState<boolean>(false);
+
+  const assignObj = React.useCallback(() => {
+    let newArr = [];
+    for (let i in CaseProp(prop.width)) {
+      const newObj = Object.assign(CaseProp(prop.width)[+i], Data[+i]);
+      newArr.push(newObj);
+    }
+    return newArr;
+  }, [prop.width]);
 
   const CharacterRect = {
     x: prop.storeX,
@@ -53,54 +62,13 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
   };
 
   const DialogProp = {
-    width: 100,
-    height: 50,
-    x: prop.storeX - 100,
+    width: Math.floor(prop.width / 15),
+    height: Math.floor(prop.width / 30),
+    x: Math.floor(prop.storeX - 100),
     y: prop.storeY,
     fill: "#ffffff",
     rx: 10,
   };
-
-  const CaseProp = React.useMemo(() => {
-    return [
-      {
-        key: "case1",
-        x: prop.width / 2.5,
-        y: 2,
-        width: prop.width / 32,
-        height: prop.width / 32,
-        xlinkHref: caseQvest,
-        text: "Упс, что-то не так",
-      },
-      {
-        key: "case2",
-        x: prop.width / 9,
-        y: prop.width / 6.1,
-        width: prop.width / 36,
-        height: prop.width / 36,
-        xlinkHref: danger,
-        text: "Посмотрим, что там?",
-      },
-      {
-        key: "case3",
-        x: prop.width / 2.8,
-        y: prop.width / 3.46,
-        width: prop.width / 37,
-        height: prop.width / 33,
-        xlinkHref: forest,
-        text: "Не так стоит холодильник",
-      },
-      {
-        key: "case4",
-        x: prop.width / 2.8,
-        y: prop.width / 16.2,
-        width: prop.width / 130,
-        height: prop.width / 130,
-        xlinkHref: lightbulbActive,
-        text: "Лампочка не исправна",
-      },
-    ];
-  }, [prop.width]);
 
   React.useEffect((): void => {
     const colisObj = (
@@ -109,7 +77,9 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
       y: number,
       height: number,
       width: number,
-      text: string
+      text: string,
+      qvest: string,
+      answer: string
     ): void => {
       if (
         prop.storeX < x + width &&
@@ -118,18 +88,30 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
         prop.storeY + hero > y
       ) {
         setOpenDial(text);
-        if (prop.keyd === " ") setOpenQvest(true);
+        setQvest(qvest);
+        if (prop.keyd === " ") {
+          if (answer === "") setGameOver(true);
+          setOpenQvest(true);
+        }
       }
     };
     setOpenDial("");
-    CaseProp.forEach(({ x, y, height, width, text }) =>
-      colisObj(prop.sizeCh, x, y, height, width, text)
+    assignObj().forEach(({ x, y, height, width, text, qvest, answer }) =>
+      colisObj(prop.sizeCh, x, y, height, width, text, qvest, answer)
     );
-  }, [CaseProp, prop.height, prop.keyd, prop.sizeCh, prop.storeX, prop.storeY]);
+  }, [
+    assignObj,
+    prop.height,
+    prop.keyd,
+    prop.sizeCh,
+    prop.storeX,
+    prop.storeY,
+    prop.width,
+  ]);
 
   return (
     <>
-      {CaseProp.map((prop) => (
+      {assignObj().map((prop) => (
         <image overflow="visible" {...prop} />
       ))}
       <>
@@ -137,10 +119,10 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
           <>
             <rect {...DialogProp}></rect>
             <foreignObject
-              x={prop.storeX - 100}
+              x={Math.floor(prop.storeX - 100)}
               y={prop.storeY}
-              width="100"
-              height="50"
+              width={Math.floor(prop.width / 15)}
+              height={Math.floor(prop.width / 30)}
             >
               <P>{openDial}</P>
             </foreignObject>
@@ -157,19 +139,20 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
         />
         {openQvest ? (
           <ForObj x={prop.width / 4} y={prop.height / 4}>
-            <h1>
-              Кто-то играл и ушёл. Компьютер уже долгое время включён и
-              работает! Отключать питание у компьютера рекомендуют, когда
-              планируете прекратить работу дольше, чем на 5 минут. Выключим его?
-            </h1>
-            <ButtonBox>
-              <ButtonClouse onClick={() => setOpenQvest(false)}>
-                Нет
-              </ButtonClouse>
-              <ButtonClouse onClick={() => setOpenQvest(false)}>
-                Да
-              </ButtonClouse>
-            </ButtonBox>
+            <h1>{qvest}</h1>
+            <>
+              {gameOver ? (
+                <></>
+              ) : (
+                <ButtonBox>
+                  {["Да", "Нет"].map((data, i) => (
+                    <ButtonClouse key={i} onClick={() => setOpenQvest(false)}>
+                      {data}
+                    </ButtonClouse>
+                  ))}
+                </ButtonBox>
+              )}
+            </>
           </ForObj>
         ) : (
           <></>
