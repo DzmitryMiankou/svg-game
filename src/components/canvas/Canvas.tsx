@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, useState, useCallback, useEffect } from "react";
 import { StateSizeCanvasType } from "../../App";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../redux/store";
@@ -44,11 +44,11 @@ const Button = styled.button`
   margin: 2px;
 `;
 
-const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
-  const [revers, setRevers] = React.useState<boolean>(false);
+const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
+  const [revers, setRevers] = useState<boolean>(false);
+  const [key, setKey] = useState<string>();
   const store = useSelector((state: RootState) => state.koord);
   const dispatch: AppDispatch = useDispatch();
-  const [key, setKey] = React.useState<string>();
 
   const { height, width } = get;
 
@@ -57,7 +57,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
     step: Math.floor(width / 300),
   };
 
-  const switchKeys = React.useCallback(
+  const switchKeys = useCallback(
     (key: string): void => {
       setKey(key);
       switch (key) {
@@ -94,7 +94,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
     [dispatch, CharacterProp.step]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const keyDownHandler = (event: KeyboardEvent): void =>
       switchKeys(event.key);
 
@@ -102,7 +102,7 @@ const Canvas: React.FC<{ get: StateSizeCanvasType }> = ({ get }) => {
     return window.removeEventListener("keyup", keyDownHandler);
   }, [switchKeys]);
 
-  React.useEffect((): void => {
+  useEffect((): void => {
     if (store.x < 0) dispatch(setKoordActionX(CharacterProp.step));
     if (store.x > width - CharacterProp.size)
       dispatch(setKoordActionX(-CharacterProp.step));

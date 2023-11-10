@@ -1,18 +1,19 @@
-import React from "react";
+import React, { FC, useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import img from "../../../img/1.png";
 import img2 from "../../../img/2.png";
 import { CaseProp } from "./CaseProp";
 import Data from "../../../data/data.json";
 
-const ForObj = styled.foreignObject`
-  background-color: #fff8ad;
+const ForObj = styled.foreignObject<{ $gameOver: boolean }>`
+  background-color: ${(prop) => (prop.$gameOver ? "#ff0000" : "#fff8ad")};
   border: 8px solid #906200;
   display: flex;
   flex-direction: column;
   text-align: center;
   width: 50%;
   height: 50%;
+  color: ${(prop) => (prop.$gameOver ? "#fff8bf" : "#000000")};
 `;
 
 const ButtonClouse = styled.button`
@@ -40,18 +41,16 @@ interface PropType<T> {
   CharacterProp: { size: T; step: T };
 }
 
-const ActiveElement: React.FC<PropType<number>> = (prop) => {
-  const [openDial, setOpenDial] = React.useState<string>("");
-  const [qvest, setQvest] = React.useState<string>("");
-  const [openQvest, setOpenQvest] = React.useState<boolean>(false);
-  const [gameOver, setGameOver] = React.useState<boolean>(false);
+const ActiveElement: FC<PropType<number>> = (prop) => {
+  const [openDial, setOpenDial] = useState<string>("");
+  const [qvest, setQvest] = useState<string>("");
+  const [openQvest, setOpenQvest] = useState<boolean>(false);
+  const [gameOver, setGameOver] = useState<boolean>(false);
 
-  const assignObj = React.useCallback(() => {
+  const assignObj = useCallback(() => {
     let newArr = [];
-    for (let i in CaseProp(prop.width)) {
-      const newObj = Object.assign(CaseProp(prop.width)[+i], Data[+i]);
-      newArr.push(newObj);
-    }
+    for (let i in CaseProp(prop.width))
+      newArr.push(Object.assign(CaseProp(prop.width)[+i], Data[+i]));
     return newArr;
   }, [prop.width]);
 
@@ -70,7 +69,7 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
     rx: 10,
   };
 
-  React.useEffect((): void => {
+  useEffect((): void => {
     const colisObj = (
       hero: number,
       x: number,
@@ -115,30 +114,36 @@ const ActiveElement: React.FC<PropType<number>> = (prop) => {
         <image overflow="visible" {...prop} />
       ))}
       <>
-        {openDial !== "" ? (
-          <>
-            <rect {...DialogProp}></rect>
-            <foreignObject
-              x={Math.floor(prop.storeX - 100)}
-              y={prop.storeY}
-              width={Math.floor(prop.width / 15)}
-              height={Math.floor(prop.width / 30)}
-            >
-              <P>{openDial}</P>
-            </foreignObject>
-          </>
-        ) : (
-          <></>
-        )}
-      </>
-      <>
-        <image
-          overflow="visible"
-          {...CharacterRect}
-          xlinkHref={prop.revers ? img2 : img}
-        />
+        <>
+          {gameOver ? (
+            <></>
+          ) : (
+            <>
+              {openDial !== "" ? (
+                <>
+                  <rect {...DialogProp}></rect>
+                  <foreignObject
+                    x={Math.floor(prop.storeX - 100)}
+                    y={prop.storeY}
+                    width={Math.floor(prop.width / 15)}
+                    height={Math.floor(prop.width / 30)}
+                  >
+                    <P>{openDial}</P>
+                  </foreignObject>
+                </>
+              ) : (
+                <></>
+              )}
+              <image
+                overflow="visible"
+                {...CharacterRect}
+                xlinkHref={prop.revers ? img2 : img}
+              />
+            </>
+          )}
+        </>
         {openQvest ? (
-          <ForObj x={prop.width / 4} y={prop.height / 4}>
+          <ForObj $gameOver={gameOver} x={prop.width / 4} y={prop.height / 4}>
             <h1>{qvest}</h1>
             <>
               {gameOver ? (
