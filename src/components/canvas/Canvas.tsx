@@ -166,21 +166,15 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         stroke={ColourEnum.WallColour}
         strokeWidth="1%"
       />
-      <>
-        {noActiveElemntProp(width).map((prop) => (
-          <image overflow="visible" {...prop} />
-        ))}
-      </>
-      <>
-        {labyrinthProp(width).map((prop) => (
-          <rect fill={ColourEnum.WallColour} {...prop} />
-        ))}
-      </>
-      <>
-        {BrikcsProp(width).map((props) => (
-          <image {...props} />
-        ))}
-      </>
+      {noActiveElemntProp(width).map((prop) => (
+        <image overflow="visible" {...prop} />
+      ))}
+      {labyrinthProp(width).map((prop) => (
+        <rect fill={ColourEnum.WallColour} {...prop} />
+      ))}
+      {BrikcsProp(width).map((props) => (
+        <image {...props} />
+      ))}
       <ActiveElement
         revers={revers}
         width={width}
