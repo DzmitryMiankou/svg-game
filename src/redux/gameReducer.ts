@@ -1,10 +1,10 @@
 const SETKEY = "SET_KEY_sdfsdghr333333__tyjdsWWS";
 
 interface InitialStateType {
-  id: string | number;
+  data: [];
 }
 
-const initialState: InitialStateType = { id: 0 };
+const initialState: InitialStateType = { data: [] };
 
 interface TypeAction {
   type: typeof SETKEY;
@@ -14,15 +14,14 @@ interface TypeAction {
 const gameReducer = (state = initialState, action: TypeAction) => {
   switch (action.type) {
     case SETKEY: {
-      return { ...state, id: action.value };
+      return { ...state, data: [...state.data, action.value] };
     }
-
     default:
       return state;
   }
 };
 
-export const setGameAction = (value: number | string) => ({
+export const setGameAction = (value: { id: string }) => ({
   type: SETKEY,
   value,
 });

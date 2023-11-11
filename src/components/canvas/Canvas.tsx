@@ -6,11 +6,7 @@ import { setKoordActionX, setKoordActionY } from "../../redux/koordReducer";
 import styled from "styled-components";
 import ActiveElement from "./active/ActiveElement";
 import { labyrinthProp, BrikcsProp, noActiveElemntProp } from "./ElementProps";
-
-const enum ColourEnum {
-  WallColour = "#3c2415",
-  BGColour = "#e7af49",
-}
+import { ColourEnum } from "../../types/enum/ColourEnum";
 
 const enum KeyEnum {
   ArrowRight = "ArrowRight",
@@ -42,6 +38,14 @@ const Button = styled.button`
   font-size: 14px;
   opacity: 40%;
   margin: 2px;
+`;
+
+const Text = styled.text`
+  fill: #d4ccb4;
+  font-size: 40px;
+  @media (max-width: 770px) {
+    font-size: 30px;
+  }
 `;
 
 const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
@@ -201,9 +205,9 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
           ))}
         </ButBox>
       </foreignObject>
-      <text x={width / 1.74} y={width / 22} fill="#d4ccb4" fontSize="490%">
+      <Text x={width / 1.24} y={width / 24}>
         3 ключа из 11
-      </text>
+      </Text>
     </SVG>
   );
 };

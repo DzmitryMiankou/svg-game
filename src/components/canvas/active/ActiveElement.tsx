@@ -7,16 +7,21 @@ import Data from "../../../data/data.json";
 import { setGameAction } from "../../../redux/gameReducer";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../../redux/store";
+import { ColourEnum } from "../../../types/enum/ColourEnum";
 
 const ForObj = styled.foreignObject<{ $gameOver: boolean }>`
-  background-color: ${(prop) => (prop.$gameOver ? "#ff0000" : "#fff8ad")};
-  border: 8px solid #906200;
+  background-color: ${(prop) =>
+    prop.$gameOver ? ColourEnum.GameEndBGColour : ColourEnum.GameOkBGColour};
+  border: 8px solid ${ColourEnum.BorderModalGameColour};
   display: flex;
   flex-direction: column;
   text-align: center;
   width: 50%;
   height: 50%;
-  color: ${(prop) => (prop.$gameOver ? "#fff8bf" : "#000000")};
+  color: ${(prop) =>
+    prop.$gameOver
+      ? ColourEnum.TextGameEndColour
+      : ColourEnum.TextGameOkColour};
 `;
 
 const ButtonClouse = styled.button`
@@ -45,14 +50,17 @@ interface PropType<T> {
 }
 
 const ActiveElement: FC<PropType<number>> = (prop) => {
-  const state = useSelector((store: RootState) => store.game);
+  const state: { data: { id: string; answer: string }[] } = useSelector(
+    (store: RootState) => store.game
+  );
   const dispatch: AppDispatch = useDispatch();
   const [openDial, setOpenDial] = useState<string>("");
   const [qvest, setQvest] = useState<string>("");
+  const [key, setKey] = useState<string>("");
   const [openQvest, setOpenQvest] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
-
-  console.log(state);
+  const [gameOveer, setGaeeOver] = useState<string>("");
+  const ref = React.useRef<SVGAElement>(null);
 
   const assignObj = useCallback(() => {
     let newArr = [];
@@ -72,7 +80,7 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
     height: 50,
     x: Math.floor(prop.storeX - 100),
     y: prop.storeY,
-    fill: "#ffffff",
+    fill: ColourEnum.WhiteColour,
     rx: 10,
   };
 
@@ -85,7 +93,9 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
       width: number,
       text: string,
       qvest: string,
-      answer: string
+      answer: string,
+      key: string,
+      newp: string | undefined
     ): void => {
       if (
         prop.storeX < x + width &&
@@ -96,15 +106,31 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
         setOpenDial(text);
         setQvest(qvest);
         if (prop.keyd === " ") {
+          setGaeeOver(newp ?? "");
+          setKey(key);
           if (answer === "") setGameOver(true);
+          if (Boolean(state.data.find((el) => el.id === key)))
+            return setOpenQvest(false);
           setOpenQvest(true);
         }
       }
     };
     setOpenDial("");
     setQvest("");
-    assignObj().forEach(({ x, y, height, width, text, qvest, answer }) =>
-      colisObj(prop.sizeCh, x, y, height, width, text, qvest, answer)
+    assignObj().forEach(
+      ({ key, x, y, height, width, text, qvest, answer, newp }) =>
+        colisObj(
+          prop.sizeCh,
+          x,
+          y,
+          height,
+          width,
+          text,
+          qvest,
+          answer,
+          key,
+          newp
+        )
     );
   }, [
     assignObj,
@@ -114,18 +140,38 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
     prop.storeX,
     prop.storeY,
     prop.width,
+    state.data,
   ]);
 
   const clickHandler = (answer: "Да" | "Нет") => {
-    dispatch(setGameAction(openDial));
+    setOpenQvest(false);
+    if (answer === "Да") {
+      ref.current
+        ?.querySelector(`#${key}`)
+        ?.setAttributeNS(
+          "http://www.w3.org/1999/xlink",
+          "xlink:href",
+          gameOveer
+        );
+      return dispatch(setGameAction({ id: key }));
+    }
   };
 
   return (
-    <>
-      {assignObj().map((prop) => (
-        <image overflow="visible" {...prop} />
+    <g ref={ref}>
+      {assignObj().map(({ key, x, y, width, height, xlinkHref }) => (
+        <image
+          overflow="visible"
+          key={key}
+          id={key}
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          xlinkHref={xlinkHref}
+        />
       ))}
-      <>
+      <g>
         <>
           {gameOver ? (
             <></>
@@ -166,7 +212,6 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
                     <ButtonClouse
                       key={i}
                       onClick={() => {
-                        setOpenQvest(false);
                         clickHandler(data === "Да" ? "Да" : "Нет");
                       }}
                     >
@@ -180,8 +225,8 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
         ) : (
           <></>
         )}
-      </>
-    </>
+      </g>
+    </g>
   );
 };
 

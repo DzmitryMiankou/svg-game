@@ -16,3 +16,7 @@ body {
 button {
   cursor: pointer;
 }
+
+.stop {
+  filter: grayscale(100%);
+}
