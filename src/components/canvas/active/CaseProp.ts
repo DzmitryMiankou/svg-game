@@ -1,5 +1,6 @@
 import refrigerator from "../../../img/frost.png";
 import lightbulbActive from "../../../img/lightbulbActive.gif";
+import lightbulbActive2 from "../../../img/lightbulbActive.png";
 import caseQvest from "../../../img/case.gif";
 import caseQvest2 from "../../../img/case.png";
 import danger from "../../../img/dangGif.gif";
@@ -32,6 +33,7 @@ const CaseProp = (width: number): CasePropType<number, string>[] => {
       width: Math.floor(width / 130),
       height: Math.floor(width / 130),
       xlinkHref: lightbulbActive,
+      newp: lightbulbActive2,
     },
     {
       key: "case3",

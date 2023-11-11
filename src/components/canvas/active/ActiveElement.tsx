@@ -5,8 +5,8 @@ import img2 from "../../../img/2.png";
 import { CaseProp } from "./CaseProp";
 import Data from "../../../data/data.json";
 import { setGameAction } from "../../../redux/gameReducer";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../../../redux/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../redux/store";
 import { ColourEnum } from "../../../types/enum/ColourEnum";
 
 const ForObj = styled.foreignObject<{ $gameOver: boolean }>`
@@ -47,12 +47,10 @@ interface PropType<T extends number> {
   keyd: string | undefined;
   revers: boolean;
   CharacterProp: { size: T; step: T };
+  state: { data: { id: string; answer: string }[] };
 }
 
 const ActiveElement: FC<PropType<number>> = (prop) => {
-  const state: { data: { id: string; answer: string }[] } = useSelector(
-    (store: RootState) => store.game
-  );
   const dispatch: AppDispatch = useDispatch();
   const [openDial, setOpenDial] = useState<string>("");
   const [qvest, setQvest] = useState<string>("");
@@ -103,7 +101,7 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
         prop.storeY < y + height &&
         prop.storeY + hero > y
       ) {
-        if (Boolean(state.data.find((el) => el.id === key))) {
+        if (Boolean(prop.state.data.find((el) => el.id === key))) {
           setOpenQvest(false);
           return setOpenDial("");
         }
@@ -139,10 +137,10 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
     prop.height,
     prop.keyd,
     prop.sizeCh,
+    prop.state.data,
     prop.storeX,
     prop.storeY,
     prop.width,
-    state.data,
   ]);
 
   const clickHandler = (answer: "Да" | "Нет") => {

@@ -49,9 +49,12 @@ const Text = styled.text`
 `;
 
 const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
+  const state: { data: { id: string; answer: string }[] } = useSelector(
+    (store: RootState) => store.game
+  );
+  const store = useSelector((state: RootState) => state.koord);
   const [revers, setRevers] = useState<boolean>(false);
   const [key, setKey] = useState<string>();
-  const store = useSelector((state: RootState) => state.koord);
   const dispatch: AppDispatch = useDispatch();
 
   const { height, width } = get;
@@ -188,6 +191,7 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         sizeCh={CharacterProp.size}
         keyd={key}
         CharacterProp={CharacterProp}
+        state={state}
       />
       <foreignObject x={width - 90} y={height / 1.4} width={80} height={42}>
         {["˂", "˃"].map((dats) => (
@@ -206,7 +210,7 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         </ButBox>
       </foreignObject>
       <Text x={width / 1.24} y={width / 24}>
-        3 ключа из 11
+        {`${state.data.length} ключа из 11`}
       </Text>
     </SVG>
   );
