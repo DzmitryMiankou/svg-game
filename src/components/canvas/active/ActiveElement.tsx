@@ -38,7 +38,7 @@ const P = styled.p`
   text-align: center;
 `;
 
-interface PropType<T> {
+interface PropType<T extends number> {
   width: T;
   height: T;
   storeX: T;
@@ -103,14 +103,16 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
         prop.storeY < y + height &&
         prop.storeY + hero > y
       ) {
+        if (Boolean(state.data.find((el) => el.id === key))) {
+          setOpenQvest(false);
+          return setOpenDial("");
+        }
         setOpenDial(text);
         setQvest(qvest);
         if (prop.keyd === " ") {
           setGaeeOver(newp ?? "");
           setKey(key);
           if (answer === "") setGameOver(true);
-          if (Boolean(state.data.find((el) => el.id === key)))
-            return setOpenQvest(false);
           setOpenQvest(true);
         }
       }

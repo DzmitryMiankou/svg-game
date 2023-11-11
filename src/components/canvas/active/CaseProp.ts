@@ -4,7 +4,7 @@ import caseQvest from "../../../img/case.gif";
 import caseQvest2 from "../../../img/case.png";
 import danger from "../../../img/dangGif.gif";
 
-interface CasePropType<N, S> {
+interface CasePropType<N extends number, S extends string> {
   key: S;
   x: N;
   y: N;
