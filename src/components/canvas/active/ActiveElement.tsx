@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback, useEffect } from "react";
+import React, { FC, useState, useCallback, useEffect, useRef } from "react";
 import styled from "styled-components";
 import img from "../../../img/1.png";
 import img2 from "../../../img/2.png";
@@ -58,7 +58,7 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
   const [openQvest, setOpenQvest] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [gameOveer, setGaeeOver] = useState<string>("");
-  const ref = React.useRef<SVGAElement>(null);
+  const ref = useRef<SVGAElement>(null);
 
   const assignObj = useCallback(() => {
     let newArr = [];
@@ -179,7 +179,7 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
             <>
               {openDial !== "" ? (
                 <>
-                  <rect {...DialogProp}></rect>
+                  <rect {...DialogProp} />
                   <foreignObject
                     x={Math.floor(prop.storeX - 100)}
                     y={prop.storeY}
