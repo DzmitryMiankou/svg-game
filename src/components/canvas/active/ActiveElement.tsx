@@ -2,7 +2,7 @@ import React, { FC, useState, useCallback, useEffect, useRef } from "react";
 import styled from "styled-components";
 import img from "../../../img/1.png";
 import img2 from "../../../img/2.png";
-import { CaseProp } from "./CaseProp";
+import { CaseProp, CasePropType } from "./CaseProp";
 import Data from "../../../data/data.json";
 import { setGameAction } from "../../../redux/gameReducer";
 import { useDispatch } from "react-redux";
@@ -61,7 +61,7 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
   const [key, setKey] = useState<string>("");
   const [openQvest, setOpenQvest] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
-  const [gameOveer, setGaeeOver] = useState<string>("");
+  const [newImg, setnewImg] = useState<string>("");
   const ref = useRef<SVGAElement>(null);
 
   const assignObj = useCallback(() => {
@@ -86,65 +86,47 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
     rx: 10,
   };
 
+  type JSONgameType<S extends string> = {
+    text: S;
+    qvest: S;
+    answer: S;
+  };
+
   useEffect((): void => {
     const colisObj = (
       hero: number,
-      x: number,
-      y: number,
-      height: number,
-      width: number,
-      text: string,
-      qvest: string,
-      answer: string,
-      key: string,
-      newp: string | undefined
+      fn: CasePropType<number, string> & JSONgameType<string>
     ): void => {
       if (
-        prop.storeX < x + width &&
-        prop.storeX + hero > x &&
-        prop.storeY < y + height &&
-        prop.storeY + hero > y
+        prop.storeX < fn.x + fn.width &&
+        prop.storeX + hero > fn.x &&
+        prop.storeY < fn.y + fn.height &&
+        prop.storeY + hero > fn.y
       ) {
-        if (Boolean(prop.state.data.find((el) => el.id === key))) {
+        if (Boolean(prop.state.data.find((el) => el.id === fn.key))) {
           setOpenQvest(false);
           return setOpenDial("");
         }
-        setOpenDial(text);
-        setQvest(qvest);
+        setOpenDial(fn.text);
+        setQvest(fn.qvest);
         if (prop.keyd === " ") {
-          setGaeeOver(newp ?? "");
-          setKey(key);
-          if (answer === "") setGameOver(true);
+          setnewImg(fn.newp ?? "");
+          setKey(fn.key);
+          if (fn.answer === "") setGameOver(true);
           setOpenQvest(true);
         }
       }
     };
     setOpenDial("");
     setQvest("");
-    assignObj().forEach(
-      ({ key, x, y, height, width, text, qvest, answer, newp }) =>
-        colisObj(
-          prop.sizeCh,
-          x,
-          y,
-          height,
-          width,
-          text,
-          qvest,
-          answer,
-          key,
-          newp
-        )
-    );
+    assignObj().forEach((props) => colisObj(prop.sizeCh, props));
   }, [
     assignObj,
-    prop.height,
     prop.keyd,
     prop.sizeCh,
     prop.state.data,
     prop.storeX,
     prop.storeY,
-    prop.width,
   ]);
 
   const clickHandler = (answer: "Да" | "Нет") => {
@@ -152,11 +134,7 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
     if (answer === "Да") {
       ref.current
         ?.querySelector(`#${key}`)
-        ?.setAttributeNS(
-          "http://www.w3.org/1999/xlink",
-          "xlink:href",
-          gameOveer
-        );
+        ?.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", newImg);
       return dispatch(setGameAction({ id: key }));
     }
   };
