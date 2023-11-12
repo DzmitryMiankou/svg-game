@@ -11,6 +11,7 @@ import { ColourEnum } from "../../../types/enum/ColourEnum";
 import {
   GameReducerType,
   CharacterSizeType,
+  JSONgameType,
 } from "../../../types/enum/type/gameType";
 
 const ForObj = styled.foreignObject<{ $gameOver: boolean }>`
@@ -84,12 +85,6 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
     y: prop.storeY,
     fill: ColourEnum.WhiteColour,
     rx: 10,
-  };
-
-  type JSONgameType<S extends string> = {
-    text: S;
-    qvest: S;
-    answer: S;
   };
 
   useEffect((): void => {
