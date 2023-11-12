@@ -390,9 +390,9 @@ const noActiveElemntProp = (width: number): BrikcsPropType<number>[] => {
     },
     {
       key: "Noactive11",
-      x: width / 2.7,
-      y: width / 77,
-      width: width / 48,
+      x: Math.floor(width / 2.69),
+      y: Math.floor(width / 88),
+      width: Math.floor(width / 48),
       xlinkHref: armch,
     },
     {
