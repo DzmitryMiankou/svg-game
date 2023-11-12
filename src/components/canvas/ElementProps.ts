@@ -10,7 +10,7 @@ import table from "../../img/table.png";
 import batteries from "../../img/batteries.png";
 import sofa from "../../img/sofa.png";
 
-interface LabyrinthPropType<T> {
+export interface LabyrinthPropType<T> {
   key: T;
   x: T;
   y: T;

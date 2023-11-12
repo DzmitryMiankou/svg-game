@@ -1,3 +1,5 @@
+import { GameReducerType } from "../types/enum/type/gameType";
+
 const SETKEY = "SET_KEY_sdfsdghr333333__tyjdsWWS";
 
 interface InitialStateType {
@@ -8,7 +10,7 @@ const initialState: InitialStateType = { data: [] };
 
 interface TypeAction {
   type: typeof SETKEY;
-  value: number | string;
+  value: string;
 }
 
 const gameReducer = (state = initialState, action: TypeAction) => {
@@ -21,7 +23,7 @@ const gameReducer = (state = initialState, action: TypeAction) => {
   }
 };
 
-export const setGameAction = (value: { id: string }) => ({
+export const setGameAction = (value: GameReducerType) => ({
   type: SETKEY,
   value,
 });

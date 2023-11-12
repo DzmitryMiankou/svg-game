@@ -5,8 +5,14 @@ import { RootState, AppDispatch } from "../../redux/store";
 import { setKoordActionX, setKoordActionY } from "../../redux/koordReducer";
 import styled from "styled-components";
 import ActiveElement from "./active/ActiveElement";
-import { labyrinthProp, BrikcsProp, noActiveElemntProp } from "./ElementProps";
+import {
+  labyrinthProp,
+  BrikcsProp,
+  noActiveElemntProp,
+  LabyrinthPropType,
+} from "./ElementProps";
 import { ColourEnum } from "../../types/enum/ColourEnum";
+import { CharacterSizeType } from "../../types/enum/type/gameType";
 
 const enum KeyEnum {
   ArrowRight = "ArrowRight",
@@ -49,7 +55,7 @@ const Text = styled.text`
 `;
 
 const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
-  const state: { data: { id: string; answer: string }[] } = useSelector(
+  const state: { data: { id: string }[] } = useSelector(
     (store: RootState) => store.game
   );
   const store = useSelector((state: RootState) => state.koord);
@@ -59,7 +65,7 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
 
   const { height, width } = get;
 
-  const CharacterProp = {
+  const CharacterProp: CharacterSizeType = {
     size: Math.floor(width / 34),
     step: Math.floor(width / 280),
   };
@@ -118,35 +124,33 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
     if (store.y < 0) dispatch(setKoordActionY(CharacterProp.step));
 
     const colisObj = (
+      step: number,
       hero: number,
-      x: number,
-      y: number,
-      height: number,
-      width: number
+      props: LabyrinthPropType<number>
     ): void => {
       if (
-        store.x < x + width &&
-        store.x + hero > x &&
-        store.y < y + height &&
-        store.y + hero > y
+        store.x < props.x + props.width &&
+        store.x + hero > props.x &&
+        store.y < props.y + props.height &&
+        store.y + hero > props.y
       ) {
         if (
           key === KeyEnum.ArrowRight ||
           key === KeyEnum.R ||
           key === KeyEnum.d
         )
-          dispatch(setKoordActionX(-CharacterProp.step));
+          dispatch(setKoordActionX(-step));
         if (key === KeyEnum.ArrowLeft || key === KeyEnum.L || key === KeyEnum.a)
-          dispatch(setKoordActionX(CharacterProp.step));
+          dispatch(setKoordActionX(step));
         if (key === KeyEnum.ArrowDown || key === KeyEnum.D || key === KeyEnum.s)
-          dispatch(setKoordActionY(-CharacterProp.step));
+          dispatch(setKoordActionY(-step));
         if (key === KeyEnum.ArrowUp || key === KeyEnum.U || key === KeyEnum.w)
-          dispatch(setKoordActionY(CharacterProp.step));
+          dispatch(setKoordActionY(step));
       }
     };
 
-    labyrinthProp(width).forEach(({ x, y, height, width }) =>
-      colisObj(CharacterProp.size, x, y, height, width)
+    labyrinthProp(width).forEach((props) =>
+      colisObj(CharacterProp.step, CharacterProp.size, props)
     );
   }, [
     dispatch,

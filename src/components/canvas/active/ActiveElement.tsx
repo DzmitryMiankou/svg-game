@@ -8,6 +8,10 @@ import { setGameAction } from "../../../redux/gameReducer";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../redux/store";
 import { ColourEnum } from "../../../types/enum/ColourEnum";
+import {
+  GameReducerType,
+  CharacterSizeType,
+} from "../../../types/enum/type/gameType";
 
 const ForObj = styled.foreignObject<{ $gameOver: boolean }>`
   background-color: ${(prop) =>
@@ -46,8 +50,8 @@ interface PropType<T extends number> {
   sizeCh: T;
   keyd: string | undefined;
   revers: boolean;
-  CharacterProp: { size: T; step: T };
-  state: { data: { id: string; answer: string }[] };
+  CharacterProp: CharacterSizeType;
+  state: { data: GameReducerType[] };
 }
 
 const ActiveElement: FC<PropType<number>> = (prop) => {
