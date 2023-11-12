@@ -7,3 +7,5 @@ export type JSONgameType<S extends string> = {
   qvest: S;
   answer: S;
 };
+
+export type AnswerGameType = "Да" | "Нет";

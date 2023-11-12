@@ -12,7 +12,7 @@ import {
   LabyrinthPropType,
 } from "./ElementProps";
 import { ColourEnum } from "../../types/enum/ColourEnum";
-import { CharacterSizeType } from "../../types/enum/type/gameType";
+import { CharacterSizeType } from "../../types/type/gameType";
 
 const enum KeyEnum {
   ArrowRight = "ArrowRight",
@@ -199,7 +199,7 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
       />
       <foreignObject x={width - 90} y={height / 1.4} width={80} height={42}>
         {["˂", "˃"].map((dats) => (
-          <Button key={dats} onMouseDown={() => switchKeys(dats)}>
+          <Button type="button" key={dats} onMouseDown={() => switchKeys(dats)}>
             {dats}
           </Button>
         ))}
@@ -207,7 +207,11 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
       <foreignObject x={width / 50} y={height / 1.5} width={40} height={90}>
         <ButBox>
           {["˄", "˅"].map((dats) => (
-            <Button key={dats} onMouseDown={() => switchKeys(dats)}>
+            <Button
+              type="button"
+              key={dats}
+              onMouseDown={() => switchKeys(dats)}
+            >
               {dats}
             </Button>
           ))}

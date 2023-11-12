@@ -1,4 +1,4 @@
-import { GameReducerType } from "../types/enum/type/gameType";
+import { GameReducerType } from "../types/type/gameType";
 
 const SETKEY = "SET_KEY_sdfsdghr333333__tyjdsWWS";
 

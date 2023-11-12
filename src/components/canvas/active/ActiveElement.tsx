@@ -12,7 +12,8 @@ import {
   GameReducerType,
   CharacterSizeType,
   JSONgameType,
-} from "../../../types/enum/type/gameType";
+  AnswerGameType,
+} from "../../../types/type/gameType";
 
 const ForObj = styled.foreignObject<{ $gameOver: boolean }>`
   background-color: ${(prop) =>
@@ -63,6 +64,7 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
   const [openQvest, setOpenQvest] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [newImg, setnewImg] = useState<string>("");
+  const [answerGame, setAnswerGame] = useState<string>("");
   const ref = useRef<SVGAElement>(null);
 
   const assignObj = useCallback(() => {
@@ -109,6 +111,7 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
           setKey(fn.key);
           if (fn.answer === "") setGameOver(true);
           setOpenQvest(true);
+          setAnswerGame(fn.answer);
         }
       }
     };
@@ -124,9 +127,9 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
     prop.storeY,
   ]);
 
-  const clickHandler = (answer: "Да" | "Нет") => {
+  const clickHandler = (answer: AnswerGameType) => {
     setOpenQvest(false);
-    if (answer === "Да") {
+    if (answer === answerGame) {
       ref.current
         ?.querySelector(`#${key}`)
         ?.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", newImg);
@@ -135,20 +138,22 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
   };
 
   return (
-    <g ref={ref}>
-      {assignObj().map(({ key, x, y, width, height, xlinkHref }) => (
-        <image
-          overflow="visible"
-          key={key}
-          id={key}
-          x={x}
-          y={y}
-          width={width}
-          height={height}
-          xlinkHref={xlinkHref}
-        />
-      ))}
-      <g>
+    <>
+      <g ref={ref}>
+        {assignObj().map(({ key, x, y, width, height, xlinkHref }) => (
+          <image
+            overflow="visible"
+            key={key}
+            id={key}
+            x={x}
+            y={y}
+            width={width}
+            height={height}
+            xlinkHref={xlinkHref}
+          />
+        ))}
+      </g>
+      <>
         <>
           {gameOver ? (
             <></>
@@ -187,6 +192,7 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
                 <ButtonBox>
                   {["Да", "Нет"].map((data, i) => (
                     <ButtonClouse
+                      type="button"
                       key={i}
                       onClick={() => {
                         clickHandler(data === "Да" ? "Да" : "Нет");
@@ -202,8 +208,8 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
         ) : (
           <></>
         )}
-      </g>
-    </g>
+      </>
+    </>
   );
 };
 

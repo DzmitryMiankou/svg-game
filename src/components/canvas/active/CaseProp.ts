@@ -46,10 +46,11 @@ const CaseProp = (width: number): CasePropType<number, string>[] => {
     {
       key: "case4",
       x: Math.floor(width / 2.8),
-      y: Math.floor(width / 3.46),
+      y: Math.floor(width / 3.45),
       width: Math.floor(width / 37),
       height: Math.floor(width / 33),
       xlinkHref: refrigerator,
+      newp: lightbulbActive2,
     },
   ];
 };
