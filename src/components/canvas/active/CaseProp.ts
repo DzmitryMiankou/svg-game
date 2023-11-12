@@ -50,7 +50,7 @@ const CaseProp = (width: number): CasePropType<number, string>[] => {
       width: Math.floor(width / 37),
       height: Math.floor(width / 33),
       xlinkHref: refrigerator,
-      newp: lightbulbActive2,
+      newp: refrigerator,
     },
   ];
 };

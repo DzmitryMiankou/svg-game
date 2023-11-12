@@ -67,7 +67,9 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
   const [answerGame, setAnswerGame] = useState<string>("");
   const ref = useRef<SVGAElement>(null);
 
-  const assignObj = useCallback(() => {
+  type AssignObjType = CasePropType<number, string> & JSONgameType<string>;
+
+  const assignObj: () => AssignObjType[] = useCallback(() => {
     let newArr = [];
     for (let i in CaseProp(prop.width))
       newArr.push(Object.assign(CaseProp(prop.width)[+i], Data[+i]));
@@ -90,10 +92,7 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
   };
 
   useEffect((): void => {
-    const colisObj = (
-      hero: number,
-      fn: CasePropType<number, string> & JSONgameType<string>
-    ): void => {
+    const colisObj = (hero: number, fn: AssignObjType): void => {
       if (
         prop.storeX < fn.x + fn.width &&
         prop.storeX + hero > fn.x &&
