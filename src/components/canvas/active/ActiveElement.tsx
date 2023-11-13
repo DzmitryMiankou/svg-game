@@ -3,7 +3,6 @@ import styled from "styled-components";
 import img from "../../../img/1.png";
 import img2 from "../../../img/2.png";
 import { CaseProp, CasePropType } from "./CaseProp";
-import Data from "../../../data/data.json";
 import { setGameAction } from "../../../redux/gameReducer";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../redux/store";
@@ -54,6 +53,7 @@ interface PropType<T extends number> {
   revers: boolean;
   CharacterProp: CharacterSizeType;
   state: { data: GameReducerType[] };
+  data: JSONgameType<string>[];
 }
 
 const ActiveElement: FC<PropType<number>> = (prop) => {
@@ -72,9 +72,9 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
   const assignObj: () => AssignObjType[] = useCallback(() => {
     let newArr = [];
     for (let i in CaseProp(prop.width))
-      newArr.push(Object.assign(CaseProp(prop.width)[+i], Data[+i]));
+      newArr.push(Object.assign(CaseProp(prop.width)[+i], prop.data[+i]));
     return newArr;
-  }, [prop.width]);
+  }, [prop.data, prop.width]);
 
   const CharacterRect = {
     x: prop.storeX,

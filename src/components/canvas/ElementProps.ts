@@ -131,7 +131,7 @@ const labyrinthProp = (width: number): LabyrinthPropType<number>[] => {
       x: Math.floor(width / 1.756),
       y: Math.floor(width / 4.53),
       width: Math.floor(width / 2.56),
-      height: Math.floor(width / 11),
+      height: Math.floor(width / 7.1),
     },
     {
       key: 16,
@@ -313,6 +313,27 @@ const BrikcsProp = (width: number): BrikcsPropType<number>[] => {
       width: width / 5,
       xlinkHref: bricks,
     },
+    {
+      key: "br25",
+      x: Math.floor(width / 2),
+      y: Math.floor(width / 2.5),
+      width: Math.floor(width / 5),
+      xlinkHref: bricks,
+    },
+    {
+      key: "br26",
+      x: Math.floor(width / 1.5),
+      y: Math.floor(width / 4.5),
+      width: Math.floor(width / 5),
+      xlinkHref: bricks,
+    },
+    {
+      key: "br27",
+      x: Math.floor(width / 1.7),
+      y: Math.floor(width / 3.6),
+      width: Math.floor(width / 5),
+      xlinkHref: bricks,
+    },
   ];
 };
 
@@ -481,17 +502,31 @@ const noActiveElemntProp = (width: number): BrikcsPropType<number>[] => {
     },
     {
       key: "Noactive24",
-      x: width / 2.14,
-      y: width / 5.23,
-      width: width / 35,
+      x: Math.floor(width / 2.14),
+      y: Math.floor(width / 5.1),
+      width: Math.floor(width / 35),
       xlinkHref: ladder,
     },
     {
       key: "Noactive25",
-      x: width / 2.14,
-      y: width / 16,
-      width: width / 35,
+      x: Math.floor(width / 2.14),
+      y: Math.floor(width / 14),
+      width: Math.floor(width / 35),
       xlinkHref: ladder,
+    },
+    {
+      key: "Noactive26",
+      x: Math.floor(width / 12.5),
+      y: Math.floor(width / 13),
+      width: Math.floor(width / 65),
+      xlinkHref: flo2,
+    },
+    {
+      key: "Noactive27",
+      x: Math.floor(width / 3),
+      y: Math.floor(width / 13),
+      width: Math.floor(width / 65),
+      xlinkHref: flo2,
     },
   ];
 };

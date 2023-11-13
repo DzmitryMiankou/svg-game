@@ -13,6 +13,7 @@ import {
 } from "./ElementProps";
 import { ColourEnum } from "../../types/enum/ColourEnum";
 import { CharacterSizeType } from "../../types/type/gameType";
+import Data from "../../data/data.json";
 
 const enum KeyEnum {
   ArrowRight = "ArrowRight",
@@ -31,19 +32,6 @@ const enum KeyEnum {
 
 const SVG = styled.svg`
   width: 100%;
-`;
-
-const ButBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: min-content;
-`;
-
-const Button = styled.button`
-  padding: 10px;
-  font-size: 14px;
-  opacity: 40%;
-  margin: 2px;
 `;
 
 const Text = styled.text`
@@ -196,8 +184,34 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         keyd={key}
         CharacterProp={CharacterProp}
         state={state}
+        data={Data}
       />
-      <foreignObject x={width - 90} y={height / 1.4} width={80} height={42}>
+
+      <Text x={width / 1.24} y={width / 24}>
+        {`${state.data.length} ключа из ${
+          Data.filter((el) => el.answer !== "").length
+        }`}
+      </Text>
+    </SVG>
+  );
+};
+
+export default Canvas;
+
+/*const ButBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+`;
+
+const Button = styled.button`
+  padding: 10px;
+  font-size: 14px;
+  opacity: 40%;
+  margin: 2px;
+`;*/
+
+/*<foreignObject x={width - 90} y={height / 1.4} width={80} height={42}>
         {["˂", "˃"].map((dats) => (
           <Button type="button" key={dats} onMouseDown={() => switchKeys(dats)}>
             {dats}
@@ -216,12 +230,4 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
             </Button>
           ))}
         </ButBox>
-      </foreignObject>
-      <Text x={width / 1.24} y={width / 24}>
-        {`${state.data.length} ключа из 11`}
-      </Text>
-    </SVG>
-  );
-};
-
-export default Canvas;
+      </foreignObject> */
