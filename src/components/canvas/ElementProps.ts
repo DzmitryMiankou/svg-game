@@ -334,6 +334,20 @@ const BrikcsProp = (width: number): BrikcsPropType<number>[] => {
       width: Math.floor(width / 5),
       xlinkHref: bricks,
     },
+    {
+      key: "br28",
+      x: Math.floor(width / 2),
+      y: Math.floor(width / 5),
+      width: Math.floor(width / 35),
+      xlinkHref: bricks1,
+    },
+    {
+      key: "br29",
+      x: Math.floor(width / 1.95),
+      y: Math.floor(width / 6),
+      width: Math.floor(width / 30),
+      xlinkHref: bricks1,
+    },
   ];
 };
 
@@ -527,6 +541,34 @@ const noActiveElemntProp = (width: number): BrikcsPropType<number>[] => {
       y: Math.floor(width / 13),
       width: Math.floor(width / 65),
       xlinkHref: flo2,
+    },
+    {
+      key: "Noactive28",
+      x: Math.floor(width / 1.866),
+      y: Math.floor(width / 4.5),
+      width: Math.floor(width / 35),
+      xlinkHref: ladder,
+    },
+    {
+      key: "Noactive29",
+      x: Math.floor(width / 1.866),
+      y: Math.floor(width / 2.88),
+      width: Math.floor(width / 35),
+      xlinkHref: ladder,
+    },
+    {
+      key: "Noactive30",
+      x: Math.floor(width / 1.037),
+      y: Math.floor(width / 4.5),
+      width: Math.floor(width / 35),
+      xlinkHref: ladder,
+    },
+    {
+      key: "Noactive31",
+      x: Math.floor(width / 1.037),
+      y: Math.floor(width / 2.88),
+      width: Math.floor(width / 35),
+      xlinkHref: ladder,
     },
   ];
 };
