@@ -4,6 +4,7 @@ import lightbulbActive2 from "../../../img/lightbulbActive.png";
 import caseQvest from "../../../img/case.gif";
 import caseQvest2 from "../../../img/case.png";
 import danger from "../../../img/dangGif.gif";
+import door from "../../../img/door.png";
 
 export interface CasePropType<N extends number, S extends string> {
   key: S;
@@ -51,6 +52,15 @@ const CaseProp = (width: number): CasePropType<number, string>[] => {
       height: Math.floor(width / 33),
       xlinkHref: refrigerator,
       newp: refrigerator,
+    },
+    {
+      key: "case5",
+      x: Math.floor(width / 1.1),
+      y: Math.floor(width / 2.75),
+      width: Math.floor(width / 37),
+      height: Math.floor(width / 33),
+      xlinkHref: door,
+      newp: door,
     },
   ];
 };

@@ -14,6 +14,7 @@ import {
 import { ColourEnum } from "../../types/enum/ColourEnum";
 import { CharacterSizeType } from "../../types/type/gameType";
 import Data from "../../data/data.json";
+import keyImg from "../../img/key.png";
 
 const enum KeyEnum {
   ArrowRight = "ArrowRight",
@@ -35,8 +36,8 @@ const SVG = styled.svg`
 `;
 
 const Text = styled.text`
-  fill: #d4ccb4;
-  font-size: 40px;
+  fill: #fdde46;
+  font-size: 46px;
   @media (max-width: 770px) {
     font-size: 30px;
   }
@@ -186,11 +187,17 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         state={state}
         data={Data}
       />
-
-      <Text x={width / 1.24} y={width / 24}>
-        {`${state.data.length} ключа из ${
-          Data.filter((el) => el.answer !== "").length
-        }`}
+      <Text x={Math.floor(width / 1.2)} y={Math.floor(width / 24)}>
+        {`${state.data.length}`}
+      </Text>
+      <image
+        width={Math.floor(width / 44)}
+        x={Math.floor(width / 1.17)}
+        y={Math.floor(width / 120)}
+        xlinkHref={keyImg}
+      />
+      <Text x={Math.floor(width / 1.13)} y={Math.floor(width / 24)}>
+        {`из ${Data.filter((el) => el.answer !== "").length}`}
       </Text>
     </SVG>
   );

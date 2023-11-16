@@ -115,16 +115,16 @@ const labyrinthProp = (width: number): LabyrinthPropType<number>[] => {
     {
       key: 13,
       x: Math.floor(width / 2),
-      y: Math.floor(width / 6.2),
+      y: Math.floor(width / 6.24),
       width: Math.floor(width / 3.5),
-      height: Math.floor(width / 35),
+      height: Math.floor(width / 32),
     },
     {
       key: 14,
       x: Math.floor(width / 1.2),
-      y: Math.floor(width / 6.2),
+      y: Math.floor(width / 6.24),
       width: Math.floor(width / 6),
-      height: Math.floor(width / 35),
+      height: Math.floor(width / 32),
     },
     {
       key: 15,
