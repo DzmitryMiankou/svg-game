@@ -10,7 +10,7 @@ import table from "../../img/table.png";
 import batteries from "../../img/batteries.png";
 import sofa from "../../img/sofa.png";
 
-export interface LabyrinthPropType<T> {
+export interface LabyrinthPropType<T extends number> {
   key: T;
   x: T;
   y: T;
@@ -18,7 +18,7 @@ export interface LabyrinthPropType<T> {
   height: T;
 }
 
-interface BrikcsPropType<T> {
+interface BrikcsPropType<T extends number> {
   key: string | number;
   x: T;
   y: T;
@@ -348,6 +348,41 @@ const BrikcsProp = (width: number): BrikcsPropType<number>[] => {
       width: Math.floor(width / 30),
       xlinkHref: bricks1,
     },
+    {
+      key: "br30",
+      x: Math.floor(width / 1.32),
+      y: Math.floor(width / 3.05),
+      width: Math.floor(width / 5),
+      xlinkHref: bricks,
+    },
+    {
+      key: "br31",
+      x: Math.floor(width / 1.62),
+      y: Math.floor(width / 6.05),
+      width: Math.floor(width / 8),
+      xlinkHref: bricks,
+    },
+    {
+      key: "br32",
+      x: Math.floor(width / 1.2),
+      y: Math.floor(width / 6.05),
+      width: Math.floor(width / 8),
+      xlinkHref: bricks,
+    },
+    {
+      key: "br33",
+      x: Math.floor(width / 1.1),
+      y: Math.floor(width / 9.5),
+      width: Math.floor(width / 8),
+      xlinkHref: bricks,
+    },
+    {
+      key: "br34",
+      x: Math.floor(width / 1.4),
+      y: Math.floor(width / 9.5),
+      width: Math.floor(width / 8),
+      xlinkHref: bricks,
+    },
   ];
 };
 
@@ -569,6 +604,48 @@ const noActiveElemntProp = (width: number): BrikcsPropType<number>[] => {
       y: Math.floor(width / 2.88),
       width: Math.floor(width / 35),
       xlinkHref: ladder,
+    },
+    {
+      key: "Noactive32",
+      x: Math.floor(width / 1.2),
+      y: Math.floor(width / 7.5),
+      width: Math.floor(width / 45),
+      xlinkHref: flo,
+    },
+    {
+      key: "Noactive33",
+      x: Math.floor(width / 1.5),
+      y: Math.floor(width / 5.2),
+      width: Math.floor(width / 45),
+      xlinkHref: flo,
+    },
+    {
+      key: "Noactive34",
+      x: Math.floor(width / 1.65),
+      y: Math.floor(width / 5.2),
+      width: Math.floor(width / 23),
+      xlinkHref: windows,
+    },
+    {
+      key: "Noactive35",
+      x: Math.floor(width / 1.4),
+      y: Math.floor(width / 5.2),
+      width: Math.floor(width / 23),
+      xlinkHref: windows,
+    },
+    {
+      key: "Noactive36",
+      x: Math.floor(width / 1.4),
+      y: Math.floor(width / 12),
+      width: Math.floor(width / 65),
+      xlinkHref: flo2,
+    },
+    {
+      key: "Noactive37",
+      x: Math.floor(width / 1.8),
+      y: Math.floor(width / 12),
+      width: Math.floor(width / 65),
+      xlinkHref: flo2,
     },
   ];
 };
