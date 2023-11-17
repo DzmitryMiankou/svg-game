@@ -9,6 +9,7 @@ import armch from "../../img/armch.png";
 import table from "../../img/table.png";
 import batteries from "../../img/batteries.png";
 import sofa from "../../img/sofa.png";
+import endGameImg from "../../img/endGameImg.png";
 
 export interface LabyrinthPropType<T extends number> {
   key: T;
@@ -117,14 +118,14 @@ const labyrinthProp = (width: number): LabyrinthPropType<number>[] => {
       x: Math.floor(width / 2),
       y: Math.floor(width / 6.24),
       width: Math.floor(width / 3.5),
-      height: Math.floor(width / 32),
+      height: Math.floor(width / 34),
     },
     {
       key: 14,
       x: Math.floor(width / 1.2),
       y: Math.floor(width / 6.24),
       width: Math.floor(width / 6),
-      height: Math.floor(width / 32),
+      height: Math.floor(width / 34),
     },
     {
       key: 15,
@@ -646,6 +647,13 @@ const noActiveElemntProp = (width: number): BrikcsPropType<number>[] => {
       y: Math.floor(width / 12),
       width: Math.floor(width / 65),
       xlinkHref: flo2,
+    },
+    {
+      key: "Noactive38",
+      x: Math.floor(width / 1.17),
+      y: Math.floor(width / 2.75),
+      width: Math.floor(width / 20),
+      xlinkHref: endGameImg,
     },
   ];
 };
