@@ -15,9 +15,8 @@ interface TypeAction {
 
 const gameReducer = (state = initialState, action: TypeAction) => {
   switch (action.type) {
-    case SETKEY: {
+    case SETKEY:
       return { ...state, data: [...state.data, action.value] };
-    }
     default:
       return state;
   }

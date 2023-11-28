@@ -15,12 +15,10 @@ interface TypeAction {
 
 const koordReducer = (state = initialState, action: TypeAction) => {
   switch (action.type) {
-    case SETKOORDX: {
+    case SETKOORDX:
       return { ...state, x: state.x + action.value };
-    }
-    case SETKOORDY: {
+    case SETKOORDY:
       return { ...state, y: state.y + action.value };
-    }
     default:
       return state;
   }
