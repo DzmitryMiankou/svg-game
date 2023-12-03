@@ -25,10 +25,6 @@ const enum KeyEnum {
   s = "s",
   d = "d",
   a = "a",
-  R = "˃",
-  L = "˂",
-  U = "˄",
-  D = "˅",
 }
 
 const SVG = styled.svg`
@@ -63,27 +59,23 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
     (key: string): void => {
       setKey(key);
       switch (key) {
-        case KeyEnum.R:
         case KeyEnum.d:
         case KeyEnum.ArrowRight:
           setRevers(false);
           setKey(key);
           dispatch(setKoordActionX(CharacterProp.step));
           break;
-        case KeyEnum.L:
         case KeyEnum.a:
         case KeyEnum.ArrowLeft:
           setRevers(true);
           setKey(key);
           dispatch(setKoordActionX(-CharacterProp.step));
           break;
-        case KeyEnum.U:
         case KeyEnum.w:
         case KeyEnum.ArrowUp:
           setKey(key);
           dispatch(setKoordActionY(-CharacterProp.step));
           break;
-        case KeyEnum.D:
         case KeyEnum.s:
         case KeyEnum.ArrowDown:
           setKey(key);
@@ -123,17 +115,13 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
         store.y < props.y + props.height &&
         store.y + hero > props.y
       ) {
-        if (
-          key === KeyEnum.ArrowRight ||
-          key === KeyEnum.R ||
-          key === KeyEnum.d
-        )
+        if (key === KeyEnum.ArrowRight || key === KeyEnum.d)
           dispatch(setKoordActionX(-step));
-        if (key === KeyEnum.ArrowLeft || key === KeyEnum.L || key === KeyEnum.a)
+        if (key === KeyEnum.ArrowLeft || key === KeyEnum.a)
           dispatch(setKoordActionX(step));
-        if (key === KeyEnum.ArrowDown || key === KeyEnum.D || key === KeyEnum.s)
+        if (key === KeyEnum.ArrowDown || key === KeyEnum.s)
           dispatch(setKoordActionY(-step));
-        if (key === KeyEnum.ArrowUp || key === KeyEnum.U || key === KeyEnum.w)
+        if (key === KeyEnum.ArrowUp || key === KeyEnum.w)
           dispatch(setKoordActionY(step));
       }
     };
@@ -204,37 +192,3 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
 };
 
 export default Canvas;
-
-/*const ButBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: min-content;
-`;
-
-const Button = styled.button`
-  padding: 10px;
-  font-size: 14px;
-  opacity: 40%;
-  margin: 2px;
-`;*/
-
-/*<foreignObject x={width - 90} y={height / 1.4} width={80} height={42}>
-        {["˂", "˃"].map((dats) => (
-          <Button type="button" key={dats} onMouseDown={() => switchKeys(dats)}>
-            {dats}
-          </Button>
-        ))}
-      </foreignObject>
-      <foreignObject x={width / 50} y={height / 1.5} width={40} height={90}>
-        <ButBox>
-          {["˄", "˅"].map((dats) => (
-            <Button
-              type="button"
-              key={dats}
-              onMouseDown={() => switchKeys(dats)}
-            >
-              {dats}
-            </Button>
-          ))}
-        </ButBox>
-      </foreignObject> */
