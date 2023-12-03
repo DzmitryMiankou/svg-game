@@ -1,22 +1,24 @@
 {
   "files": {
-    "main.css": "/svg-game/static/css/main.ba997a2e.css",
-    "main.js": "/svg-game/static/js/main.04de94c7.js",
+    "main.css": "/svg-game/static/css/main.e49cec29.css",
+    "main.js": "/svg-game/static/js/main.9473adb6.js",
     "static/media/SpaceHarrierTheme.mp3": "/svg-game/static/media/SpaceHarrierTheme.8a7612236983e8ba43b4.mp3",
-    "static/media/1.png": "/svg-game/static/media/1.ec0857d93e43e3be7cb5.png",
-    "static/media/2.png": "/svg-game/static/media/2.8680a18a49e68efbfee0.png",
+    "static/media/2.png": "/svg-game/static/media/2.a02bc890629baebc908e.png",
     "static/media/frost.png": "/svg-game/static/media/frost.633e27d9c95a91726120.png",
+    "static/media/key.png": "/svg-game/static/media/key.3666875aa81c86b7fd92.png",
     "static/media/ladder.png": "/svg-game/static/media/ladder.b3284c35d3cff64ecd60.png",
+    "static/media/1.png": "/svg-game/static/media/1.2d4cda636c65aa4027a5.png",
     "static/media/window.png": "/svg-game/static/media/window.1da6f6a5376545fb7b7f.png",
     "static/media/flo.png": "/svg-game/static/media/flo.6d2a72f9b1c9bd7294f7.png",
+    "static/media/door.png": "/svg-game/static/media/door.1279986856e02cab4e47.png",
     "static/media/arrow.svg": "/svg-game/static/media/arrow.eba05acb67ac8fabc0771d25ea72bcd0.svg",
     "index.html": "/svg-game/index.html",
     "static/media/propbel.svg": "/svg-game/static/media/propbel.3457f9ce1af9b0bc75ae7c826eab1299.svg",
-    "main.ba997a2e.css.map": "/svg-game/static/css/main.ba997a2e.css.map",
-    "main.04de94c7.js.map": "/svg-game/static/js/main.04de94c7.js.map"
+    "main.e49cec29.css.map": "/svg-game/static/css/main.e49cec29.css.map",
+    "main.9473adb6.js.map": "/svg-game/static/js/main.9473adb6.js.map"
   },
   "entrypoints": [
-    "static/css/main.ba997a2e.css",
-    "static/js/main.04de94c7.js"
+    "static/css/main.e49cec29.css",
+    "static/js/main.9473adb6.js"
   ]
 }
