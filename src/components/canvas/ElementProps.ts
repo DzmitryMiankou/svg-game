@@ -1,11 +1,13 @@
 import bricks from "../../img/vs.png";
 import bricks1 from "../../img/vs1.png";
 import ladder from "../../img/ladder.png";
+import ladderShort from "../../img/ladder_short.png";
 import flo from "../../img/flo.png";
 import flo2 from "../../img/flo2.png";
 import windows from "../../img/window.png";
 import light from "../../img/lightbulb.png";
 import armch from "../../img/armch.png";
+import armch2 from "../../img/armch2.png";
 import table from "../../img/table.png";
 import batteries from "../../img/batteries.png";
 import sofa from "../../img/sofa.png";
@@ -654,6 +656,27 @@ const noActiveElemntProp = (width: number): BrikcsPropType<number>[] => {
       y: Math.floor(width / 2.75),
       width: Math.floor(width / 20),
       xlinkHref: endGameImg,
+    },
+    {
+      key: "Noactive39",
+      x: Math.floor(width / 1.58),
+      y: Math.floor(width / 10),
+      width: Math.floor(width / 35),
+      xlinkHref: ladderShort,
+    },
+    {
+      key: "Noactive40",
+      x: Math.floor(width / 1.254),
+      y: Math.floor(width / 6.2),
+      width: Math.floor(width / 35),
+      xlinkHref: ladderShort,
+    },
+    {
+      key: "Noactive41",
+      x: Math.floor(width / 26),
+      y: Math.floor(width / 2.69),
+      width: Math.floor(width / 48),
+      xlinkHref: armch2,
     },
   ];
 };

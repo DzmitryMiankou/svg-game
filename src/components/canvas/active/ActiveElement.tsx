@@ -43,6 +43,10 @@ const P = styled.p`
   text-align: center;
 `;
 
+const Character = styled.image`
+  transition: 0.04s;
+`;
+
 interface PropType<T extends number> {
   width: T;
   height: T;
@@ -173,7 +177,7 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
               ) : (
                 <></>
               )}
-              <image
+              <Character
                 overflow="visible"
                 {...CharacterRect}
                 xlinkHref={prop.revers ? img2 : img}
