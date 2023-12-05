@@ -7,6 +7,8 @@ import danger from "../../../img/dangGif.gif";
 import door from "../../../img/door.png";
 import setc from "../../../img/setc.png";
 import setc2 from "../../../img/setc2.png";
+import washstand from "../../../img/washstand.gif";
+import washstand2 from "../../../img/washstand.png";
 
 export interface CasePropType<N extends number, S extends string> {
   key: S;
@@ -72,6 +74,15 @@ const CaseProp = (width: number): CasePropType<number, string>[] => {
       height: Math.floor(width / 33),
       xlinkHref: setc,
       newp: setc2,
+    },
+    {
+      key: "case7",
+      x: Math.floor(width / 1.028),
+      y: Math.floor(width / 14.5),
+      width: Math.floor(width / 37),
+      height: Math.floor(width / 33),
+      xlinkHref: washstand,
+      newp: washstand2,
     },
   ];
 };
