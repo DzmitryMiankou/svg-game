@@ -1,26 +1,33 @@
 {
   "files": {
-    "main.css": "/svg-game/static/css/main.e49cec29.css",
-    "main.js": "/svg-game/static/js/main.ac76f4c5.js",
+    "main.css": "/svg-game/static/css/main.ad81e61a.css",
+    "main.js": "/svg-game/static/js/main.378a2d9c.js",
     "static/media/SpaceHarrierTheme.mp3": "/svg-game/static/media/SpaceHarrierTheme.8a7612236983e8ba43b4.mp3",
+    "static/media/gsg.gif": "/svg-game/static/media/gsg.535ecab49b5ee78e660d.gif",
+    "static/media/hero.png": "/svg-game/static/media/hero.d2d82d09ffe21c557aa1.png",
     "static/media/title.png": "/svg-game/static/media/title.ac21ce55fdf0d9521e01.png",
+    "static/media/windActive.gif": "/svg-game/static/media/windActive.5b11ae279524f80034c7.gif",
+    "static/media/washstand.gif": "/svg-game/static/media/washstand.1d6392d172d48e49af75.gif",
+    "static/media/window.gif": "/svg-game/static/media/window.4558f5d9b2d4672753f1.gif",
     "static/media/frost.png": "/svg-game/static/media/frost.633e27d9c95a91726120.png",
     "static/media/ladder.png": "/svg-game/static/media/ladder.b3284c35d3cff64ecd60.png",
     "static/media/2.png": "/svg-game/static/media/2.55e047437101bdc37bb9.png",
     "static/media/1.png": "/svg-game/static/media/1.ab467f8c10c2f95b9e1a.png",
-    "static/media/window.png": "/svg-game/static/media/window.1da6f6a5376545fb7b7f.png",
+    "static/media/batteriesActive.gif": "/svg-game/static/media/batteriesActive.4315c84705fe9df77f7a.gif",
     "static/media/flo.png": "/svg-game/static/media/flo.6d2a72f9b1c9bd7294f7.png",
     "static/media/key.png": "/svg-game/static/media/key.22fb63d662b1f2700b0d.png",
     "static/media/ladder_short.png": "/svg-game/static/media/ladder_short.cc236e02479ee9f52e53.png",
+    "static/media/washstand.png": "/svg-game/static/media/washstand.0a4da93d61de8816f9e9.png",
     "static/media/door.png": "/svg-game/static/media/door.1279986856e02cab4e47.png",
+    "static/media/wallpaper.png": "/svg-game/static/media/wallpaper.7fd08d099f9d684ca5ac.png",
     "static/media/arrow.svg": "/svg-game/static/media/arrow.eba05acb67ac8fabc0771d25ea72bcd0.svg",
     "index.html": "/svg-game/index.html",
     "static/media/propbel.svg": "/svg-game/static/media/propbel.3457f9ce1af9b0bc75ae7c826eab1299.svg",
-    "main.e49cec29.css.map": "/svg-game/static/css/main.e49cec29.css.map",
-    "main.ac76f4c5.js.map": "/svg-game/static/js/main.ac76f4c5.js.map"
+    "main.ad81e61a.css.map": "/svg-game/static/css/main.ad81e61a.css.map",
+    "main.378a2d9c.js.map": "/svg-game/static/js/main.378a2d9c.js.map"
   },
   "entrypoints": [
-    "static/css/main.e49cec29.css",
-    "static/js/main.ac76f4c5.js"
+    "static/css/main.ad81e61a.css",
+    "static/js/main.378a2d9c.js"
   ]
 }
