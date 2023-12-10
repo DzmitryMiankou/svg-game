@@ -4,15 +4,16 @@ import lightbulbActive2 from "../../../img/lightbulbActive.png";
 import caseQvest from "../../../img/case.gif";
 import caseQvest2 from "../../../img/case.png";
 import danger from "../../../img/dangGif.gif";
-import door from "../../../img/door.png";
 import setc from "../../../img/setc.png";
 import setc2 from "../../../img/setc2.png";
 import washstand from "../../../img/washstand.gif";
 import washstand2 from "../../../img/washstand.png";
 import windActiv from "../../../img/windActive.gif";
+import wind from "../../../img/window.gif";
 import wallpaper from "../../../img/wallpaper.png";
 import wallpaper2 from "../../../img/wallpaper2.png";
 import eas from "../../../img/eas.png";
+import roz from "../../../img/roz.png";
 export interface CasePropType<N extends number, S extends string> {
   key: S;
   x: N;
@@ -61,15 +62,6 @@ const CaseProp = (width: number): CasePropType<number, string>[] => {
       newp: refrigerator,
     },
     {
-      key: "case5",
-      x: Math.floor(width / 1.1),
-      y: Math.floor(width / 2.75),
-      width: Math.floor(width / 37),
-      height: Math.floor(width / 33),
-      xlinkHref: door,
-      newp: door,
-    },
-    {
       key: "case6",
       x: Math.floor(width / 15),
       y: Math.floor(width / 2.77),
@@ -94,7 +86,7 @@ const CaseProp = (width: number): CasePropType<number, string>[] => {
       width: Math.floor(width / 23),
       height: Math.floor(width / 19),
       xlinkHref: windActiv,
-      newp: windActiv,
+      newp: wind,
     },
     {
       key: "case9",
@@ -113,6 +105,15 @@ const CaseProp = (width: number): CasePropType<number, string>[] => {
       height: Math.floor(width / 40),
       xlinkHref: eas,
       newp: eas,
+    },
+    {
+      key: "case11",
+      x: Math.floor(width / 1.11),
+      y: Math.floor(width / 2.65),
+      width: Math.floor(width / 140),
+      height: Math.floor(width / 140),
+      xlinkHref: roz,
+      newp: roz,
     },
   ];
 };

@@ -14,6 +14,7 @@ import batteriesAct from "../../img/batteriesActive.gif";
 import sofa from "../../img/sofa.png";
 import endGameImg from "../../img/endGameImg.png";
 import washer from "../../img/gsg.gif";
+import door from "../../img/door.png";
 
 export interface LabyrinthPropType<T extends number> {
   key: T;
@@ -686,6 +687,13 @@ const noActiveElemntProp = (width: number): BrikcsPropType<number>[] => {
       y: Math.floor(width / 4.93),
       width: width / 36,
       xlinkHref: batteriesAct,
+    },
+    {
+      key: "Noactive44",
+      x: Math.floor(width / 1.1),
+      y: Math.floor(width / 2.75),
+      width: Math.floor(width / 50),
+      xlinkHref: door,
     },
   ];
 };

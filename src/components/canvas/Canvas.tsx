@@ -28,8 +28,10 @@ const enum KeyEnum {
   a = "a",
 }
 
-const SVG = styled.svg`
+const SVG = styled.svg<{ $light: number }>`
   width: 100%;
+  filter: ${(prop) =>
+    prop.$light === 8 ? "grayscale(100%)" : "grayscale(0%)"};
 `;
 
 const Text = styled.text`
@@ -143,6 +145,7 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
 
   return (
     <SVG
+      $light={state.data.length}
       x="0px"
       y="0px"
       viewBox={`0 0 ${width} ${height}`}

@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 import { ReactComponent as Arrow } from "../../img/arrow.svg";
 import { ReactComponent as Probel } from "../../img/propbel.svg";
+import hero from "../../img/hero.png";
 
 const BoxWindow = styled.div`
   display: flex;
@@ -11,6 +12,7 @@ const BoxWindow = styled.div`
   overflow: hidden;
   flex-direction: column;
   background-color: #e6af4a;
+  position: relative;
 `;
 
 const ButtonStart = styled.button`
@@ -22,6 +24,7 @@ const ButtonStart = styled.button`
   font-size: 2rem;
   text-transform: uppercase;
   transition: 0.2s;
+  z-index: 1;
   &:hover {
     background-color: #e6af4a;
     color: #3b2414;
@@ -51,6 +54,12 @@ const Box = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
+  z-index: 1;
+`;
+
+const P = styled.p`
+  text-align: center;
+  font-size: 32px;
 `;
 
 const BoxImage = styled.div`
@@ -71,6 +80,21 @@ const BoxImage2 = styled(BoxImage)`
   width: 10%;
 `;
 
+const Hero = styled.img`
+  position: absolute;
+  left: -40px;
+  bottom: 0px;
+  z-index: 0;
+  width: 20%;
+`;
+
+const Hero2 = styled(Hero)`
+  left: 82%;
+  bottom: 0px;
+  width: 20%;
+  transform: scaleX(-1);
+`;
+
 const StartWindow: React.FC<{
   setOpenPage: Dispatch<SetStateAction<boolean>>;
   handlePlay: () => void;
@@ -82,7 +106,10 @@ const StartWindow: React.FC<{
 
   return (
     <BoxWindow>
-      <H1>энерголабиринт</H1>
+      <div>
+        <H1>энерголабиринт</H1>
+        <P>помоги собрать пионеру все ключи</P>
+      </div>
       <ButtonStart type="button" onClick={handlerClick}>
         начать игру
       </ButtonStart>
@@ -97,6 +124,9 @@ const StartWindow: React.FC<{
           <Arrow />
         </BoxImage2>
       </Box>
+      <p>© Web-студия Гимназии №7 города Молодечно</p>
+      <Hero src={hero} alt="png" />
+      <Hero2 src={hero} alt="png" />
     </BoxWindow>
   );
 };

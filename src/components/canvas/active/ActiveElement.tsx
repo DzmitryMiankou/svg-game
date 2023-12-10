@@ -187,12 +187,23 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
             </>
           )}
         </>
-        {prop.state.data.length === 7 ? (
-          <ForObj
-            $gameOver={gameOver}
-            x={prop.width / 4}
-            y={prop.height / 4}
-          ></ForObj>
+        {prop.state.data.length === 8 ? (
+          <ForObj $gameOver={gameOver} x={prop.width / 4} y={prop.height / 4}>
+            <h1>
+              Молодец. Ты получил все ключи и теперь можешь смело идти гулять на
+              улицу.
+            </h1>
+            <h2>Создатели:</h2>
+            <ul>
+              <li>Программист: Смоленский Андрей. 10Б класс. </li>
+              <li>Художник: Меер У. 10Б класс</li>
+            </ul>
+            <p>
+              Руковолител: Меньков Дмитрий. Учитель математики и информатики
+            </p>
+            <p>© Web-студия Гимназии №7 города Молодечно</p>
+            <p>Чтобы играть снова обновите страницу</p>
+          </ForObj>
         ) : (
           <>
             {openQvest ? (
