@@ -9,7 +9,10 @@ import setc from "../../../img/setc.png";
 import setc2 from "../../../img/setc2.png";
 import washstand from "../../../img/washstand.gif";
 import washstand2 from "../../../img/washstand.png";
-
+import windActiv from "../../../img/windActive.gif";
+import wallpaper from "../../../img/wallpaper.png";
+import wallpaper2 from "../../../img/wallpaper2.png";
+import eas from "../../../img/eas.png";
 export interface CasePropType<N extends number, S extends string> {
   key: S;
   x: N;
@@ -83,6 +86,33 @@ const CaseProp = (width: number): CasePropType<number, string>[] => {
       height: Math.floor(width / 33),
       xlinkHref: washstand,
       newp: washstand2,
+    },
+    {
+      key: "case8",
+      x: Math.floor(width / 1.728),
+      y: Math.floor(width / 5.6),
+      width: Math.floor(width / 23),
+      height: Math.floor(width / 19),
+      xlinkHref: windActiv,
+      newp: windActiv,
+    },
+    {
+      key: "case9",
+      x: Math.floor(width / 1.7),
+      y: Math.floor(width / 2.77),
+      width: Math.floor(width / 5.2),
+      height: Math.floor(width / 30),
+      xlinkHref: wallpaper,
+      newp: wallpaper2,
+    },
+    {
+      key: "case10",
+      x: Math.floor(width / 1.8),
+      y: Math.floor(width / 7.2),
+      width: Math.floor(width / 20),
+      height: Math.floor(width / 40),
+      xlinkHref: eas,
+      newp: eas,
     },
   ];
 };

@@ -140,6 +140,8 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
     }
   };
 
+  console.log(prop.state.data.length);
+
   return (
     <>
       <g ref={ref}>
@@ -185,31 +187,45 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
             </>
           )}
         </>
-        {openQvest ? (
-          <ForObj $gameOver={gameOver} x={prop.width / 4} y={prop.height / 4}>
-            <h1>{qvest}</h1>
-            <>
-              {gameOver ? (
-                <></>
-              ) : (
-                <ButtonBox>
-                  {["Да", "Нет"].map((data, i) => (
-                    <ButtonClouse
-                      type="button"
-                      key={i}
-                      onClick={() => {
-                        clickHandler(data === "Да" ? "Да" : "Нет");
-                      }}
-                    >
-                      {data}
-                    </ButtonClouse>
-                  ))}
-                </ButtonBox>
-              )}
-            </>
-          </ForObj>
+        {prop.state.data.length === 7 ? (
+          <ForObj
+            $gameOver={gameOver}
+            x={prop.width / 4}
+            y={prop.height / 4}
+          ></ForObj>
         ) : (
-          <></>
+          <>
+            {openQvest ? (
+              <ForObj
+                $gameOver={gameOver}
+                x={prop.width / 4}
+                y={prop.height / 4}
+              >
+                <h1>{qvest}</h1>
+                <>
+                  {gameOver ? (
+                    <></>
+                  ) : (
+                    <ButtonBox>
+                      {["Да", "Нет"].map((data, i) => (
+                        <ButtonClouse
+                          type="button"
+                          key={i}
+                          onClick={() => {
+                            clickHandler(data === "Да" ? "Да" : "Нет");
+                          }}
+                        >
+                          {data}
+                        </ButtonClouse>
+                      ))}
+                    </ButtonBox>
+                  )}
+                </>
+              </ForObj>
+            ) : (
+              <></>
+            )}
+          </>
         )}
       </>
     </>

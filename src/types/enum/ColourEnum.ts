@@ -1,7 +1,7 @@
 const enum ColourEnum {
   WallColour = "#3c2415",
   BGColour = "#e7af49",
-  GameEndBGColour = "#ff0000",
+  GameEndBGColour = "#691818",
   GameOkBGColour = "#fff8ad",
   BorderModalGameColour = "#906200",
   TextGameEndColour = "#fff8bf",

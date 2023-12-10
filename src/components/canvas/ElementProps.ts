@@ -4,14 +4,16 @@ import ladder from "../../img/ladder.png";
 import ladderShort from "../../img/ladder_short.png";
 import flo from "../../img/flo.png";
 import flo2 from "../../img/flo2.png";
-import windows from "../../img/window.png";
+import windows from "../../img/window.gif";
 import light from "../../img/lightbulb.png";
 import armch from "../../img/armch.png";
 import armch2 from "../../img/armch2.png";
 import table from "../../img/table.png";
 import batteries from "../../img/batteries.png";
+import batteriesAct from "../../img/batteriesActive.gif";
 import sofa from "../../img/sofa.png";
 import endGameImg from "../../img/endGameImg.png";
+import washer from "../../img/gsg.gif";
 
 export interface LabyrinthPropType<T extends number> {
   key: T;
@@ -623,13 +625,6 @@ const noActiveElemntProp = (width: number): BrikcsPropType<number>[] => {
       xlinkHref: flo,
     },
     {
-      key: "Noactive34",
-      x: Math.floor(width / 1.65),
-      y: Math.floor(width / 5.2),
-      width: Math.floor(width / 23),
-      xlinkHref: windows,
-    },
-    {
       key: "Noactive35",
       x: Math.floor(width / 1.4),
       y: Math.floor(width / 5.2),
@@ -677,6 +672,20 @@ const noActiveElemntProp = (width: number): BrikcsPropType<number>[] => {
       y: Math.floor(width / 2.69),
       width: Math.floor(width / 48),
       xlinkHref: armch2,
+    },
+    {
+      key: "Noactive42",
+      x: Math.floor(width / 1.89),
+      y: Math.floor(width / 7.55),
+      width: Math.floor(width / 46),
+      xlinkHref: washer,
+    },
+    {
+      key: "Noactive43",
+      x: Math.floor(width / 1.6),
+      y: Math.floor(width / 4.93),
+      width: width / 36,
+      xlinkHref: batteriesAct,
     },
   ];
 };
