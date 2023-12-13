@@ -140,8 +140,6 @@ const ActiveElement: FC<PropType<number>> = (prop) => {
     }
   };
 
-  console.log(prop.state.data.length);
-
   return (
     <>
       <g ref={ref}>

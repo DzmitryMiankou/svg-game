@@ -54,7 +54,7 @@ const Canvas: FC<{ get: StateSizeCanvasType }> = ({ get }) => {
   const { height, width } = get;
 
   const CharacterProp: CharacterSizeType = {
-    size: Math.floor(width / 34),
+    size: Math.floor(width / 37),
     step: Math.floor(width / 280),
   };
 
