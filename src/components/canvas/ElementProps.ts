@@ -30,6 +30,7 @@ interface BrikcsPropType<T extends number> {
   y: T;
   width: T;
   xlinkHref: string;
+  filter?: string;
 }
 
 const labyrinthProp = (width: number): LabyrinthPropType<number>[] => {
@@ -694,6 +695,49 @@ const noActiveElemntProp = (width: number): BrikcsPropType<number>[] => {
       y: Math.floor(width / 2.75),
       width: Math.floor(width / 50),
       xlinkHref: door,
+    },
+    {
+      key: "Noactive45",
+      x: Math.floor(width / 1.45),
+      y: Math.floor(width / 7.15),
+      width: Math.floor(width / 48),
+      xlinkHref: armch2,
+    },
+    {
+      key: "Noactive46",
+      x: Math.floor(width / 2.4),
+      y: Math.floor(width / 2.69),
+      width: Math.floor(width / 14),
+      xlinkHref: sofa,
+      filter: "hue-rotate(90deg)",
+    },
+    {
+      key: "Noactive47",
+      x: Math.floor(width / 2.7),
+      y: Math.floor(width / 2.743),
+      width: Math.floor(width / 45),
+      xlinkHref: flo,
+    },
+    {
+      key: "Noactive48",
+      x: Math.floor(width / 4),
+      y: Math.floor(width / 2.69),
+      width: Math.floor(width / 55),
+      xlinkHref: flo2,
+    },
+    {
+      key: "Noactive49",
+      x: Math.floor(width / 3.5),
+      y: Math.floor(width / 2.78),
+      width: Math.floor(width / 130),
+      xlinkHref: light,
+    },
+    {
+      key: "Noactive50",
+      x: Math.floor(width / 3.5),
+      y: Math.floor(width / 2.78),
+      width: Math.floor(width / 130),
+      xlinkHref: light,
     },
   ];
 };
