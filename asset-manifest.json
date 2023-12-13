@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/svg-game/static/css/main.ad81e61a.css",
-    "main.js": "/svg-game/static/js/main.378a2d9c.js",
+    "main.js": "/svg-game/static/js/main.c63a609f.js",
     "static/media/SpaceHarrierTheme.mp3": "/svg-game/static/media/SpaceHarrierTheme.8a7612236983e8ba43b4.mp3",
     "static/media/gsg.gif": "/svg-game/static/media/gsg.535ecab49b5ee78e660d.gif",
     "static/media/hero.png": "/svg-game/static/media/hero.d2d82d09ffe21c557aa1.png",
@@ -24,10 +24,10 @@
     "index.html": "/svg-game/index.html",
     "static/media/propbel.svg": "/svg-game/static/media/propbel.3457f9ce1af9b0bc75ae7c826eab1299.svg",
     "main.ad81e61a.css.map": "/svg-game/static/css/main.ad81e61a.css.map",
-    "main.378a2d9c.js.map": "/svg-game/static/js/main.378a2d9c.js.map"
+    "main.c63a609f.js.map": "/svg-game/static/js/main.c63a609f.js.map"
   },
   "entrypoints": [
     "static/css/main.ad81e61a.css",
-    "static/js/main.378a2d9c.js"
+    "static/js/main.c63a609f.js"
   ]
 }
